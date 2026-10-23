@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#202057">
+  <meta name="description" content="Babylon — bold ideas, beautiful chemistry. Explore a new dimension of cosmetic science.">
+  <title>Babylon — Beauty, engineered.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="announcement"><span><i></i> PRECISION SCIENCE. UNCONVENTIONAL THINKING.</span><button data-panel="project">Let’s talk chemistry <span aria-hidden="true">↗</span></button></div>
+  <header class="header">
+    <a class="brand" href="#" aria-label="Babylon home">
+      <svg class="brand-mark" viewBox="0 0 96 67" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="1.3"><path d="M12 61V8h23v53M61 61V8h23v53M10 8V3h5v3h5V3h5v3h5V3h6v5M60 8V3h5v3h5V3h5v3h5V3h5v5M35 20h26M35 25h26M35 61V42a13 13 0 0 1 26 0v19M41 61V43a7 7 0 0 1 14 0v18M8 62h80M17 15h5v5h-5zM26 15h5v5h-5zM17 27h5v5h-5zM26 27h5v5h-5zM17 39h5v5h-5zM26 39h5v5h-5zM17 51h5v5h-5zM26 51h5v5h-5zM66 15h5v5h-5zM75 15h5v5h-5zM66 27h5v5h-5zM75 27h5v5h-5zM66 39h5v5h-5zM75 39h5v5h-5zM66 51h5v5h-5zM75 51h5v5h-5z"/></g></svg>
+      <span>BABYLON</span>
+    </a>
+    <nav aria-label="Main navigation"><button data-panel="science">The science</button><button data-panel="lab">The lab</button><button data-panel="process">The process</button><button data-panel="practice">In practice</button></nav>
+    <button class="button header-cta" data-panel="project">Start a project <span aria-hidden="true">↗</span></button>
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-copy">
+        <div class="eyebrow"><span aria-hidden="true">+</span> COSMETIC SCIENCE, REIMAGINED</div>
+        <h1 id="hero-heading">Beauty,<br><em>engineered.</em><span class="heading-star" aria-hidden="true">✳</span></h1>
+        <div class="intro"><span class="index" aria-hidden="true">(01—↗)</span><p>Bold ideas. Beautiful chemistry.<br>We turn your vision into high-performance formulations,<br class="desktop-break"> made to feel different. And built to scale.</p></div>
+        <div class="hero-actions"><button class="button primary-cta" data-panel="project">Let’s make something remarkable <span aria-hidden="true">↗</span></button><button class="text-button" data-panel="science">Explore the science <span aria-hidden="true">↓</span></button></div>
+        <div class="copy-footer"><span>FROM MOLECULE TO MARKET.</span><span>FORMULATE / REFINE / SCALE</span></div>
+      </div>
+
+      <div class="visual-wrap">
+        <div class="material-study" aria-label="Interactive 3D cosmetic material study">
+          <div class="scene-fallback" aria-hidden="true"><div class="fallback-arch"></div><div class="fallback-podium"></div><div class="fallback-bottle"><i></i><span>BABYLON<br><small>THE DAILY FORMULA</small></span></div><div class="fallback-orb"></div></div>
+          <canvas id="scene" aria-label="A 3D amber serum bottle, navy architectural arch, and reflective silver sphere"></canvas>
+          <div class="visual-top"><span class="micro-label">BABYLON MATERIAL STUDIES</span><span class="micro-label" id="study-number">NO. 001</span></div>
+          <span class="visual-star" aria-hidden="true">✳</span>
+          <div class="scene-caption"><span class="micro-label" id="study-title">THE ART OF WHAT’S NEXT.</span><button id="motion-toggle" aria-label="Pause 3D animation" aria-pressed="false"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4v8M10 4v8"/></svg></button></div>
+          <span class="scene-hint" id="scene-hint">MOVE TO EXPLORE <span>↗</span></span>
+        </div>
+        <button class="science-seal" data-panel="science" aria-label="Discover science with a sensory soul"><span>SCIENCE WITH</span><span class="seal-star" aria-hidden="true">✳</span><span>A SENSORY SOUL</span></button>
+        <div class="study-controls"><span><i></i> A NEW DIMENSION OF BEAUTY</span><div><button class="study-dot active" data-study="0" aria-label="View amber serum study" aria-pressed="true">01</button><span>/</span><button class="study-dot" data-study="1" aria-label="View cream formulation study" aria-pressed="false">02</button></div></div>
+      </div>
+    </section>
+
+    <section class="credentials" aria-label="Our approach"><span class="credentials-intro">CREATIVITY, MEET<br>CREDIBILITY.</span><span>Purposeful formulations</span><span class="tiny-star" aria-hidden="true">✳</span><span>Precision at every step</span><span class="tiny-star" aria-hidden="true">✳</span><span>From concept to creation</span><span class="tiny-star" aria-hidden="true">✳</span><span>Your vision. Your formula.</span></section>
+    <footer class="page-footer"><span>INDEPENDENT THINKING. EXTRAORDINARY POSSIBILITIES.</span><span>SCIENCE IS ONLY THE BEGINNING. <span aria-hidden="true">↗</span></span></footer>
+  </main>
+
+  <dialog id="info-dialog" aria-labelledby="dialog-title"><button class="dialog-close" aria-label="Close dialog">×</button><span class="eyebrow" id="dialog-eyebrow">THE BABYLON APPROACH</span><h2 id="dialog-title"></h2><div id="dialog-content"></div></dialog>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
