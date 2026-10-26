@@ -1,0 +1,5 @@
+Mode: Built-in image_gen edit tool
+Input: hero-reference.png
+Output: hero-reference-clean.png
+
+Use case: precise-object-edit. Edit target: the attached 1261 by 706 pixel website reference image. Remove ONLY the gold circular badge at approximately x=600..711, y=449..561, which reads SCIENCE WITH / A SENSORY SOUL and has a navy star. Seamlessly reconstruct the underlying cream background and the stone/product photograph hidden by that badge. Keep EVERYTHING ELSE unchanged: identical canvas size/aspect ratio, identical photographic composition, exact circle position, bottle, laboratory tube, navy arch, cream on stone platform, stone egg, lighting, gold orbit lines, all typography, logo, navbar and footer. Do not move, resize or restyle any existing content. No badge, no seal, no new text, no replacement object. This is a surgical badge removal, preserving all other pixels as closely as possible.

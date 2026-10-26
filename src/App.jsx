@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
+import ProcessStrip from './components/ProcessStrip.jsx';
+import ChemistrySection from './components/ChemistrySection.jsx';
 import InfoDialog from './components/InfoDialog.jsx';
 
 export default function App() {
@@ -9,8 +11,8 @@ export default function App() {
     <Header onOpen={setPanel} />
     <main>
       <Hero onOpen={setPanel} />
-    <section className="credentials" aria-label="Our approach"><span className="credentials-intro">CREATIVITY, MEET<br />CREDIBILITY.</span><span>Purposeful formulations</span><span className="tiny-star" aria-hidden="true">✳</span><span>Precision at every step</span><span className="tiny-star" aria-hidden="true">✳</span><span>From concept to creation</span><span className="tiny-star" aria-hidden="true">✳</span><span>Your vision. Your formula.</span></section>
-    <footer className="page-footer"><span>INDEPENDENT THINKING. EXTRAORDINARY POSSIBILITIES.</span><span>SCIENCE IS ONLY THE BEGINNING. <span aria-hidden="true">↗</span></span></footer>
+      <ProcessStrip onOpen={setPanel} />
+      <ChemistrySection onOpen={setPanel} />
 
     </main>
     <InfoDialog panel={panel} onOpen={setPanel} onClose={() => setPanel(null)} />

@@ -9,7 +9,7 @@ const panels = {
   lab: {
     eyebrow: '02 / THE LAB',
     title: <>A space for<br />what comes next.</>,
-    body: <><p>The lab is where bold ideas become tangible. A texture to touch. A finish to refine. A new possibility to explore.</p><p>Explore the material studies on this page: switch between the amber serum and cream formulation using 01 and 02 below the scene.</p></>,
+    body: <><p>The lab is where bold ideas become tangible. A texture to touch. A finish to refine. A new possibility to explore.</p><p>Explore the amber serum, cream formulation, and laboratory glassware in our featured material study.</p></>,
   },
   process: {
     eyebrow: '03 / THE PROCESS',
