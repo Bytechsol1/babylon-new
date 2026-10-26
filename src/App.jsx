@@ -10,7 +10,7 @@ export default function App() {
   return <>
     <Header onOpen={setPanel} />
     <main>
-      <Hero onOpen={setPanel} />
+      <Hero />
       <ProcessStrip onOpen={setPanel} />
       <ChemistrySection onOpen={setPanel} />
 

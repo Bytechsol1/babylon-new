@@ -1,0 +1,143 @@
+/* Pinned, scroll-scrubbed frame sequence hero, sitting below the sticky header. */
+.frame-hero {
+  --progress: 0;
+  --header-height: 76px;
+  position: relative;
+  height: 400vh;
+  height: 400svh;
+}
+
+.frame-hero-stage {
+  position: sticky;
+  top: var(--header-height);
+  height: calc(100vh - var(--header-height));
+  height: calc(100svh - var(--header-height));
+  overflow: hidden;
+  background: #ece4d4;
+}
+
+.frame-hero-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity .6s;
+}
+
+.frame-hero-canvas[data-ready] { opacity: 1; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.frame-hero-cue {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 34px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px;
+  background: #faf8f3cc;
+  backdrop-filter: blur(6px);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  opacity: clamp(0, 1 - var(--progress) * 6, 1);
+  transform: translate(-50%, calc(var(--progress) * 120px));
+  pointer-events: none;
+}
+
+.frame-hero-cue span {
+  font-size: 16px;
+  animation: cue-bob 1.8s ease-in-out infinite;
+}
+
+.frame-hero-stages {
+  position: absolute;
+  z-index: 2;
+  right: 5%;
+  bottom: 26px;
+  display: flex;
+  gap: 26px;
+  margin: 0;
+  padding: 10px 18px;
+  list-style: none;
+  background: #faf8f3cc;
+  backdrop-filter: blur(6px);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.frame-hero-stages li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: .38;
+  transition: opacity .4s;
+}
+
+.frame-hero-stages li.active { opacity: 1; }
+
+.frame-hero-stages span {
+  font-family: Georgia, serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--orbit-gold);
+}
+
+.frame-hero-track {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: #14164e14;
+}
+
+.frame-hero-loaded,
+.frame-hero-progress {
+  position: absolute;
+  inset: 0;
+  transform-origin: left;
+}
+
+.frame-hero-loaded { background: #b780293d; transition: transform .3s; }
+.frame-hero-progress { background: var(--orbit-gold); transform: scaleX(var(--progress)); }
+
+@keyframes cue-bob {
+  50% { transform: translateY(4px); }
+}
+
+/* Keep the cue clear of the stage labels when they would meet in the middle. */
+@media (max-width: 1100px) {
+  .frame-hero-cue { bottom: 88px; }
+}
+
+@media (max-width: 800px) {
+  .frame-hero { height: 320vh; height: 320svh; }
+  .frame-hero-cue { bottom: 76px; font-size: 8px; letter-spacing: 1.6px; }
+  .frame-hero-stages { left: 5%; right: 5%; bottom: 20px; justify-content: space-between; gap: 10px; padding: 10px 14px; font-size: 8px; letter-spacing: 1.4px; }
+  .frame-hero-stages li { gap: 7px; }
+  .frame-hero-stages span { font-size: 14px; }
+}
+
+@media (max-width: 430px) {
+  .frame-hero-stages { font-size: 7px; letter-spacing: 1px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frame-hero-cue span { animation: none; }
+}
