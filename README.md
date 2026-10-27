@@ -20,6 +20,14 @@ npm run preview
 
 Vite generates the production site in `dist/`.
 
+## Deploy on Vercel
+
+Connect `Bytechsol1/babylon-new` and deploy the `main` branch to Production. Leave the Root Directory at the repository root (`.`): `package.json` is already at the root of the GitHub repository, even though the local checkout is inside `babylon-hero/`.
+
+`vercel.json` selects Vite, installs with `npm ci`, builds with `npm run build`, and serves `dist/`. Use Node.js 22.x in the Vercel project settings.
+
+If the dashboard says **No Production Deployment**, open Deployments and deploy `main` to Production. If a deployment is marked Error, inspect its Build Logs; that dashboard message alone is not a build error. If a successful deployment is only a Preview, use Promote to Production.
+
 The website uses the locally hosted Manrope variable font. Responsive type sizes and weights are defined in `src/typography.css`; the font and its SIL Open Font License are in `src/assets/fonts/`.
 
 ## Edit the website
