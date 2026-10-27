@@ -1,0 +1,96 @@
+@font-face {
+  font-family: 'Manrope';
+  src: url('./assets/fonts/manrope-latin-variable.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+}
+
+:root {
+  --sans: 'Manrope', Arial, sans-serif;
+  --serif: var(--sans);
+}
+
+body { font-family: var(--sans); }
+button, input, select, textarea { font-family: var(--sans); }
+h1, h2, h3, h4, blockquote { font-family: var(--sans); }
+h1, h2, h3 { text-wrap: balance; }
+h1 em, h2 em, h3 em { font-style: normal; }
+
+.hero h1 {
+  font-size: clamp(62px, 7.8vw, 118px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -.065em;
+}
+.hero h1 em {
+  font-size: 1em;
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -.065em;
+}
+.hero .eyebrow { letter-spacing: 1.6px; }
+
+.chemistry-title {
+  font-size: clamp(42px, 4.25vw, 72px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -.055em;
+}
+.chemistry-title em {
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -.055em;
+  margin-top: 17px;
+}
+
+.about-chapter h3 { font-weight: 600; letter-spacing: -.05em; line-height: 1.12; }
+.about-chapter h3 em { font-size: 1em; font-weight: 400; letter-spacing: -.045em; line-height: 1.15; }
+.mfg-intro h2 { font-size: clamp(44px, 5vw, 74px); font-weight: 600; line-height: 1.08; letter-spacing: -.05em; }
+.mfg-intro h2 em { font-size: 1em; font-weight: 400; line-height: 1.15; letter-spacing: -.045em; }
+.mfg-service-controls h3 { font-weight: 600; font-size: clamp(34px, 3.4vw, 50px); line-height: 1.12; letter-spacing: -.045em; }
+.mfg-service-controls h3 em { font-size: 1em; font-weight: 400; }
+.mfg-tab-number, .process-number, .orbit-number, .voices-avatar, .voices-count { font-variant-numeric: tabular-nums; }
+
+.voices-intro h2 { font-weight: 600; font-size: clamp(34px, 3.5vw, 52px); line-height: 1.12; letter-spacing: -.045em; }
+.voices-intro h2 em { font-size: 1em; font-weight: 400; }
+.voices-slide blockquote { font-size: clamp(24px, 2.15vw, 33px); font-weight: 400; line-height: 1.45; letter-spacing: -.035em; min-height: 180px; }
+.voices-quote-mark { font-size: 86px; height: 45px; }
+.contact-intro h2 { font-size: clamp(44px, 4.9vw, 74px); font-weight: 600; line-height: 1.08; letter-spacing: -.05em; }
+.contact-intro h2 em { font-size: 1em; font-weight: 400; line-height: 1.1; }
+.faq-intro h2 { font-size: clamp(52px, 5.5vw, 78px); font-weight: 600; letter-spacing: -.05em; line-height: 1.1; }
+.faq-intro h2 em { font-size: 1em; font-weight: 400; }
+.footer-invitation h2 { font-size: clamp(34px, 4.1vw, 60px); font-weight: 600; line-height: 1.1; letter-spacing: -.045em; }
+.footer-invitation h2 em { font-size: 1em; font-weight: 400; line-height: 1.15; }
+.footer-signoff em { font-family: var(--sans); font-size: 14px; font-style: normal; }
+dialog h2 { font-size: clamp(32px, 4vw, 46px); font-weight: 500; line-height: 1.12; letter-spacing: -.04em; }
+
+@media (max-width: 1000px) {
+  .chemistry-title { font-size: clamp(42px, 6vw, 66px); }
+}
+@media (max-width: 800px) {
+  .hero h1 { font-size: clamp(44px, 14.2vw, 92px); letter-spacing: -.06em; line-height: 1.08; }
+  .hero h1 em { font-size: 1em; letter-spacing: -.06em; line-height: 1.1; }
+  .mfg-intro h2 { font-size: clamp(42px, 8.5vw, 66px); }
+  .voices-intro h2 { font-size: clamp(33px, 6vw, 48px); }
+  .voices-slide blockquote { font-size: 27px; }
+  .contact-intro h2 { font-size: clamp(40px, 8vw, 58px); }
+  .faq-intro h2 { font-size: clamp(44px, 8vw, 62px); }
+}
+@media (max-width: 650px) {
+  .chemistry-title { font-size: clamp(38px, 11.5vw, 66px); letter-spacing: -.05em; }
+  .chemistry-title em { font-size: 1em; line-height: 1.15; letter-spacing: -.05em; }
+  .footer-invitation h2 { font-size: clamp(27px, 6.9vw, 42px); letter-spacing: -.045em; }
+}
+@media (max-width: 500px) {
+  .mfg-intro h2 { font-size: 10.8vw; }
+  .mfg-service-controls h3 { font-size: 34px; }
+  .voices-slide blockquote { font-size: 24px; min-height: 190px; }
+  .voices-intro h2 { font-size: 8.8vw; }
+  .contact-intro h2 { font-size: 11.5vw; }
+}
+@media (max-height: 450px) and (min-width: 651px) {
+  .about-chapter h3 { font-size: 24px; }
+  .about-chapter h3 em { font-size: 1em; }
+}

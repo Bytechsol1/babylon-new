@@ -1,11 +1,35 @@
 import { useEffect, useRef, useState } from 'react';
 import { createFrameSequence } from '../frameSequence.js';
 
-// Scroll progress at which each stage of the footage begins.
-const stages = [
-  { number: '01', name: 'Formulate', from: 0 },
-  { number: '02', name: 'Refine', from: .42 },
-  { number: '03', name: 'Scale', from: .66 },
+const chapters = [
+  {
+    label: 'Our story',
+    title: 'A little curiosity.',
+    emphasis: 'A new kind of beauty.',
+    description: 'Since 2016, Babylon has brought bold ideas to clean beauty. We combine cosmetic innovation with care for safety, quality and affordability.',
+    detail: 'EST. 2016 · BUILT ON CURIOSITY',
+  },
+  {
+    label: 'Our mission',
+    title: 'Beautiful results.',
+    emphasis: 'Thoughtful beginnings.',
+    description: 'Clean, ethical and effective cosmetics, made with your well-being in mind. Because the beauty you create should reflect the things you believe in.',
+    detail: 'CLEAN BEAUTY · CLEAR PURPOSE',
+  },
+  {
+    label: 'Our standards',
+    title: 'Care in every detail.',
+    emphasis: 'Science in every drop.',
+    description: 'Innovation drives us. Rigorous testing, carefully chosen ingredients and Good Manufacturing Practices guide every step, from formulation to packaging.',
+    detail: 'INNOVATION · SAFETY · GMP',
+  },
+  {
+    label: 'Your possibilities',
+    title: 'Your next big idea.',
+    emphasis: 'Room to begin.',
+    description: 'High-quality clean beauty, within reach. With affordable pricing, low minimum orders and swift lead times, we help brands of every size bring their vision to life.',
+    detail: 'LOW MOQ · SHORT LEAD TIMES · FAIR PRICING',
+  },
 ];
 
 // Push in towards the middle of the footage, then pull back out for the final line-up.
@@ -20,21 +44,41 @@ export default function Hero() {
 
   useEffect(() => {
     const section = sectionRef.current;
-    return createFrameSequence(canvasRef.current, {
-      section,
-      onProgress(progress) {
-        section.style.setProperty('--progress', progress.toFixed(4));
-        setStage(stages.findLastIndex(s => progress >= s.from));
-      },
-      onLoad: fraction => setLoaded(Math.round(fraction * 100)),
-      zoom: zoomAt,
-    });
+    let dispose;
+    // Start fetching the footage as this third section approaches the viewport.
+    const observer = new IntersectionObserver(entries => {
+      if (!entries.some(entry => entry.isIntersecting) || dispose) return;
+      dispose = createFrameSequence(canvasRef.current, {
+        section,
+        onProgress(progress) {
+          section.style.setProperty('--progress', progress.toFixed(4));
+          setStage(Math.min(chapters.length - 1, Math.floor(progress * chapters.length)));
+        },
+        onLoad: fraction => setLoaded(Math.round(fraction * 100)),
+        zoom: zoomAt,
+      });
+      observer.disconnect();
+    }, { rootMargin: '100% 0px' });
+    observer.observe(section);
+    return () => { observer.disconnect(); dispose?.(); };
   }, []);
 
+  function goToChapter(index) {
+    const section = sectionRef.current;
+    const canvas = canvasRef.current;
+    const top = parseFloat(getComputedStyle(canvas.parentElement).top) || 0;
+    const progress = index === 0 ? 0 : (index + .12) / chapters.length;
+    window.scrollTo({
+      top: section.getBoundingClientRect().top + window.scrollY - top + (section.offsetHeight - canvas.clientHeight) * progress,
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+    });
+  }
+
   return (
-    <section ref={sectionRef} className="frame-hero" aria-labelledby="hero-heading">
-      <h1 id="hero-heading" className="visually-hidden">Babylon. Beauty, engineered.</h1>
+    <section ref={sectionRef} className="frame-hero about-film" id="about" aria-labelledby="about-heading">
+      <h2 id="about-heading" className="visually-hidden">About Babylon</h2>
       <div className="frame-hero-stage">
+        <img className="about-film-poster" src={`${import.meta.env.BASE_URL}frames/frame_00000.jpg`} alt="" aria-hidden="true" loading="lazy" />
         <canvas
           ref={canvasRef}
           className="frame-hero-canvas"
@@ -42,15 +86,26 @@ export default function Hero() {
           aria-label="A serum is formulated, whipped into a cream, filled into amber bottles and finished as a product line-up before a navy arch."
         />
 
-        <div className="frame-hero-cue" aria-hidden="true">SCROLL TO EXPLORE <span>↓</span></div>
-
-        <ol className="frame-hero-stages" aria-hidden="true">
-          {stages.map((s, i) => (
-            <li key={s.number} className={i === stage ? 'active' : undefined}>
-              <span>{s.number}</span>{s.name.toUpperCase()}
-            </li>
+        <div className="about-film-shade" aria-hidden="true" />
+        <div className="about-film-edition" aria-hidden="true">BABYLON <span>EST. 2016</span></div>
+        <div className="about-film-copy">
+          {chapters.map((chapter, index) => (
+            <article key={chapter.label} className={`about-chapter${index === stage ? ' is-active' : ''}`} aria-hidden={index !== stage}>
+              <div className="about-chapter-index"><span aria-hidden="true" />{String(index + 1).padStart(2, '0')} / 04 <span aria-hidden="true" /></div>
+              <p className="about-chapter-label">{chapter.label}</p>
+              <h3>{chapter.title}<em>{chapter.emphasis}</em></h3>
+              <p className="about-chapter-description">{chapter.description}</p>
+              <p className="about-chapter-detail">{chapter.detail}</p>
+            </article>
           ))}
-        </ol>
+        </div>
+
+        <div className="about-film-footer">
+          <div className="about-film-caption"><span />ABOUT BABYLON<span /></div>
+          <nav className="about-film-chapters" aria-label="About Babylon chapters">
+            {chapters.map((chapter, index) => <button key={chapter.label} type="button" aria-label={chapter.label} aria-current={index === stage ? 'step' : undefined} onClick={() => goToChapter(index)}><span className={index === stage ? 'is-active' : ''} /></button>)}
+          </nav>
+        </div>
 
         <div className="frame-hero-track" aria-hidden="true">
           <span className="frame-hero-loaded" style={{ transform: `scaleX(${loaded / 100})` }} hidden={loaded === 100} />

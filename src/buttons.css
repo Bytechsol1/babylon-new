@@ -1,0 +1,18 @@
+:root {
+  --logo-gold: #edae2f;
+}
+
+button,
+.button {
+  border-radius: 999px;
+}
+
+.dialog-close {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 50%;
+  line-height: 1;
+}

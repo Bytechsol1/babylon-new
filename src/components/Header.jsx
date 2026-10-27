@@ -49,7 +49,7 @@ export default function Header({ onOpen }) {
         </button>
       ))}
     </nav>
-    <button className="button header-cta" data-panel="project" onClick={() => openPanel("project")}>Start a project <span aria-hidden="true">↗</span></button>
+    <button className="header-cta" data-panel="project" onClick={() => openPanel("project")}>Start a project <span aria-hidden="true">↗</span></button>
     <button className="menu-toggle" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} aria-controls="main-navigation" onClick={() => setMenuOpen(open => !open)}><span></span><span></span></button>
   </header>
 

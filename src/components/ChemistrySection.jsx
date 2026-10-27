@@ -1,7 +1,10 @@
-import chemistryReference from '../assets/chemistry-reference.png';
+import { useRef } from 'react';
+import ChemistryAnimation from './ChemistryAnimation.jsx';
 
 export default function ChemistrySection({ onOpen }) {
+  const sectionRef = useRef(null);
   return (
+    <div className="chemistry-scroll" ref={sectionRef}>
     <section className="chemistry-section" aria-labelledby="chemistry-title">
       <div className="chemistry-section-top">
         <span>01 / A DIFFERENT KIND OF CHEMISTRY</span>
@@ -16,16 +19,7 @@ export default function ChemistrySection({ onOpen }) {
           <em>Unexpected<br />possibilities.</em>
         </h2>
 
-        <figure className="chemistry-art">
-          <img
-            src={chemistryReference}
-            alt="A glass dish of cream, a golden serum droplet, and a glass sphere surrounded by a fine gold orbit, illustrating precision and intuition."
-            width="1590"
-            height="690"
-            loading="lazy"
-            decoding="async"
-          />
-        </figure>
+        <ChemistryAnimation sectionRef={sectionRef} />
 
         <div className="chemistry-copy">
           <p className="chemistry-lead">For the founders who see things differently. The formulators who ask better questions. The brands ready to make their mark.</p>
@@ -42,5 +36,6 @@ export default function ChemistrySection({ onOpen }) {
         <span>From first idea to full-scale production.</span>
       </div>
     </section>
+    </div>
   );
 }

@@ -1,7 +1,19 @@
+.chemistry-scroll {
+  position: relative;
+  margin-top: 70px;
+}
+
+.chemistry-scroll::after { content: ''; display: block; height: 85svh; }
+
 .chemistry-section {
+  position: sticky;
+  top: 96px;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100svh - 96px);
   width: 94%;
   max-width: 1600px;
-  margin: 70px auto 0;
+  margin: 0 auto;
   padding: 32px 0 18px;
   color: var(--ink);
 }
@@ -20,6 +32,7 @@
 .chemistry-rule { height: 1px; flex: 1; background: #c6b18b; opacity: .85; }
 
 .chemistry-grid {
+  flex: 1;
   display: grid;
   grid-template-columns: 1.02fr 1.12fr .88fr;
   align-items: center;
@@ -59,6 +72,26 @@
   mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent), linear-gradient(0deg, transparent, #000 3%, #000 98%, transparent);
   mask-composite: intersect;
 }
+
+.chemistry-art-track { min-width: 0; }
+.chemistry-scene { display: block; width: 100%; height: 100%; overflow: visible; }
+
+.chemistry-callout {
+  position: absolute;
+  z-index: 1;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: clamp(10px, .78vw, 12px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.chemistry-callout-precision { left: 6.5%; top: 10.8%; }
+.chemistry-callout-intuition { right: 6%; top: 72.4%; }
 
 /* Keep the supplied central composition and its callouts at their original ratio. */
 .chemistry-art img {
@@ -150,11 +183,17 @@
 }
 
 @media (max-width: 1000px) {
-  .chemistry-section { width: 90%; margin-top: 50px; }
+  .chemistry-scroll { margin-top: 50px; }
+  .chemistry-scroll::after { height: 0; }
+  .chemistry-section { position: relative; top: auto; display: block; min-height: 0; width: 90%; }
   .chemistry-section-top { font-size: 8px; letter-spacing: 1.4px; gap: 15px; }
   .chemistry-grid { grid-template-columns: 1fr 1fr; gap: 24px; padding: 30px 0; }
   .chemistry-title { font-size: clamp(72px, 9vw, 95px); letter-spacing: -5px; }
   .chemistry-art { align-self: center; }
+  .chemistry-art-track { align-self: start; }
+  .chemistry-art-track::after { content: ''; display: block; height: 65svh; }
+  .chemistry-art-animated { position: sticky; top: 100px; }
+  .chemistry-title { align-self: start; position: sticky; top: 120px; }
   .chemistry-copy { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 20px 40px; }
   .chemistry-lead { grid-row: span 2; margin: 0; font-size: 23px; }
   .chemistry-description { font-size: 14px; }
@@ -163,15 +202,18 @@
 }
 
 @media (max-width: 650px) {
-  .chemistry-section { margin-top: 36px; padding-top: 24px; }
+  .chemistry-scroll { margin-top: 36px; }
+  .chemistry-section { padding-top: 24px; }
   .chemistry-section-top { flex-wrap: wrap; gap: 12px; font-size: 7px; letter-spacing: 1.25px; }
   .chemistry-section-top > span:first-child { flex-basis: auto; }
   .chemistry-section-top > span:last-child { flex-basis: 100%; color: var(--muted); font-size: 6.5px; }
   .chemistry-rule { min-width: 25px; }
   .chemistry-grid { grid-template-columns: 1fr; gap: 24px; padding: 39px 0 31px; }
   .chemistry-title { font-size: clamp(64px, 17vw, 100px); line-height: .84; letter-spacing: -3.8px; }
+  .chemistry-title { position: relative; top: auto; }
   .chemistry-title em { font-size: 1.06em; line-height: .91; margin-top: 14px; letter-spacing: -2.5px; }
   .chemistry-art { width: min(100%, 460px); justify-self: center; margin-top: -8px; }
+  .chemistry-art-animated { margin: 0 auto; align-self: start; }
   .chemistry-copy { display: block; grid-column: auto; }
   .chemistry-lead { font-size: 23px; line-height: 1.45; margin-bottom: 23px; letter-spacing: -.4px; }
   .chemistry-description { font-size: 14px; line-height: 1.8; }
@@ -180,4 +222,9 @@
   .chemistry-cta-label { font-size: 17px; }
   .chemistry-section-bottom { align-items: flex-start; flex-direction: column; gap: 9px; padding-top: 14px; font-size: 7px; letter-spacing: 1.2px; }
   .chemistry-section-bottom > span:last-child { font-size: 8px; letter-spacing: .8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chemistry-scroll::after, .chemistry-art-track::after { height: 0; }
+  .chemistry-section, .chemistry-title, .chemistry-art-animated { position: relative; top: auto; }
 }
