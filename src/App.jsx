@@ -1,39 +1,24 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import Header from './components/Header.jsx';
-import Hero from './components/Hero.jsx';
-import OriginalHero from './components/OriginalHero.jsx';
-import ProcessStrip from './components/ProcessStrip.jsx';
-import ChemistrySection from './components/ChemistrySection.jsx';
-import ManufacturingSection from './components/ManufacturingSection.jsx';
-import InfoDialog from './components/InfoDialog.jsx';
-import { TestimonialsSection, ContactSection, FAQSection, SiteFooter } from './components/ClosingSections.jsx';
+import { Router, useRouter } from './router.jsx';
+import { navigation } from './content.js';
+import { Home, Services, Capabilities, Products, Quality, Process, About, FAQ, Contact, NotFound, Footer } from './components/SitePages.jsx';
+import FAQAssistant from './components/FAQAssistant.jsx';
 
-export default function App() {
-  const [panel, setPanel] = useState(null);
-  function openPanel(nextPanel) {
-    if (nextPanel === 'project') {
-      setPanel(null);
-      requestAnimationFrame(() => {
-        document.querySelector('#contact')?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
-        document.querySelector('#contact-title')?.focus({ preventScroll: true });
-      });
-    } else setPanel(nextPanel);
-  }
+const pages = { '/': Home, '/services': Services, '/capabilities': Capabilities, '/products': Products, '/quality': Quality, '/process': Process, '/about': About, '/faq': FAQ, '/contact': Contact };
+function Website() {
+  const { location } = useRouter();
+  const Page = pages[location] || NotFound;
+  useEffect(() => {
+    const title = navigation.find(([path]) => path === location)?.[1] || 'Page not found';
+    document.title = `${title === 'Home' ? 'Cosmetics, engineered.' : title} | Babylon`;
+  }, [location]);
   return <>
-    <Header onOpen={openPanel} />
-    <main>
-      <div className="opening-section">
-        <OriginalHero onOpen={openPanel} />
-        <ProcessStrip onOpen={openPanel} />
-      </div>
-      <ChemistrySection onOpen={openPanel} />
-      <Hero />
-      <ManufacturingSection />
-      <TestimonialsSection />
-      <ContactSection />
-      <FAQSection />
-    </main>
-    <SiteFooter />
-    <InfoDialog panel={panel} onOpen={openPanel} onClose={() => setPanel(null)} />
+    <a className="skip-link" href="#main-content">Skip to content</a>
+    <Header />
+    <main id="main-content" tabIndex={-1}><Page /></main>
+    <Footer />
+    <FAQAssistant />
   </>;
 }
+export default function App() { return <Router><Website /></Router>; }

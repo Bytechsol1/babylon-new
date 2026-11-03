@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef } from 'react';
-import chemistryReference from '../assets/chemistry-reference.png';
-import cleanPlate from '../assets/chemistry-clean-plate.png';
-import starFreeReference from '../assets/chemistry-no-star.png';
+import chemistryReference from '../assets/chemistry-animation-reference.webp';
+import cleanPlate from '../assets/chemistry-animation-clean-plate.webp';
+import starFreeReference from '../assets/chemistry-animation-star-free.webp';
 
 const clamp = value => Math.min(1, Math.max(0, value));
 const smooth = (start, end, value) => {

@@ -1,0 +1,13 @@
+.site-review { padding: 30px; margin-top: 35px; margin-bottom: 65px; border: 1px solid #b8a17c; background: #f2eee4; }
+.site-review h2 { margin: 22px 0; font-size: 30px; font-weight: 500; letter-spacing: -.04em; line-height: 1.2; }
+.site-review-intro { max-width: 800px; color: var(--muted); font-size: 13px; }
+.site-review-list { margin: 30px 0 0; }
+.site-review-list > div { padding: 20px 0; border-top: 1px solid #d4cbbc; }
+.site-review-list dt { font-size: 15px; font-weight: 600; }
+.site-review-list dd { margin: 10px 0 0; }
+.site-review .placeholder { margin: 0 0 8px; }
+.site-review-faq h3 { font-size: 24px; font-weight: 500; }
+.site-review-faq article { padding-block: 18px; border-top: 1px solid #d4cbbc; }
+.site-review-faq h4 { font-size: 15px; font-weight: 500; margin: 0 0 15px; }
+.site-review .product-card h3 { font-size: 30px; font-weight: 500; margin: 15px 0; }
+@media (max-width: 550px) { .site-review { padding: 22px; } .site-review h2 { font-size: 26px; } }

@@ -1,0 +1,126 @@
+/* Quality dossier: shared Babylon typography, restrained lab imagery and numbered topics. */
+.qlt-page { --qlt-gold: #99713b; --qlt-rule: #d4c5a9; }
+.qlt-hero { padding-top: 43px; }
+.qlt-hero .section-label { padding-bottom: 34px; }
+.qlt-hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: clamp(35px, 5vw, 75px); padding-bottom: 47px; }
+.qlt-hero-copy > .kicker { font-size: 8px; letter-spacing: 1.7px; }
+.qlt-hero h1 { margin: 24px 0 26px; font-size: clamp(43px, 4.6vw, 68px); font-weight: 600; line-height: 1.08; letter-spacing: -.06em; animation: none; }
+.qlt-hero h1 em { display: block; font-size: 1em; font-style: normal; font-weight: 400; line-height: 1.15; letter-spacing: -.06em; white-space: normal; }
+.qlt-hero-copy p { max-width: 470px; margin: 0 0 15px; color: var(--muted); font-size: 14px; line-height: 1.85; }
+.qlt-hero-copy .qlt-hero-lead { color: var(--ink); font-size: 16px; }
+.qlt-text-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 28px; min-height: 44px; padding-block: 6px; border-bottom: 1px solid #af8c50; font-size: 12px; font-weight: 500; }
+.qlt-text-link > span { font-size: 22px; font-weight: 400; color: #896122; }
+.qlt-text-link:hover { color: #896122; }
+.qlt-hero-copy .qlt-text-link { margin-top: 7px; }
+.qlt-hero-image { margin: 0; min-width: 0; }
+.qlt-hero-image img { display: block; width: 100%; height: auto; aspect-ratio: 1.13; object-fit: cover; object-position: 50% 43%; border-radius: 3px 110px 3px 3px; }
+.qlt-hero-image figcaption, .qlt-sample-image figcaption, .qlt-record-image figcaption { display: flex; justify-content: space-between; gap: 13px; margin-top: 14px; color: #796039; text-align: left; font-size: 6px; letter-spacing: 1.2px; }
+.qlt-standard { display: grid; grid-template-columns: .85fr 1.05fr 1.25fr; align-items: center; gap: 35px; padding: 30px 33px; background: #f1ece2; border-block: 1px solid var(--qlt-rule); }
+.qlt-standard .kicker { font-size: 7px; letter-spacing: 1.2px; }
+.qlt-standard-title h2 { margin: 14px 0 0; font-size: clamp(27px, 2.4vw, 35px); font-weight: 500; line-height: 1.18; letter-spacing: -.045em; }
+.qlt-certification { min-width: 0; padding-inline: 30px; border-inline: 1px solid var(--qlt-rule); }
+.qlt-certification strong { display: block; margin-top: 9px; font-size: clamp(30px, 2.8vw, 41px); line-height: 1.25; font-weight: 500; letter-spacing: -.045em; }
+.qlt-certification p { margin: 9px 0 0; font-size: 11px; color: var(--muted); }
+.qlt-standard-copy p { margin: 0 0 12px; color: var(--muted); font-size: 12px; line-height: 1.85; }
+.qlt-standard-copy .qlt-text-link { font-size: 11px; gap: 20px; }
+.qlt-standard-neutral { grid-template-columns: 1fr 1.5fr; }
+.qlt-testing { padding-top: 69px; scroll-margin-top: calc(var(--site-header-height, 84px) + 20px); }
+.qlt-testing .section-label, .qlt-records .section-label { padding-bottom: 30px; }
+.qlt-section-heading { display: flex; justify-content: space-between; align-items: end; gap: 35px; }
+.qlt-section-heading h2, .qlt-records h2 { margin: 0; font-size: clamp(36px, 3.8vw, 53px); font-weight: 550; line-height: 1.12; letter-spacing: -.055em; }
+.qlt-section-index { padding-bottom: 7px; color: #896122; font-size: 11px; letter-spacing: 2px; }
+.qlt-scope-note { display: grid; grid-template-columns: 190px 1fr; align-items: baseline; gap: 30px; padding: 17px 0 18px; margin: 27px 0 32px; border-block: 1px solid var(--qlt-rule); }
+.qlt-scope-note .kicker { font-size: 7px; letter-spacing: 1.3px; }
+.qlt-scope-note p { max-width: 860px; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.8; }
+.qlt-testing-grid { display: grid; grid-template-columns: .95fr 1.1fr; gap: clamp(35px, 5vw, 75px); align-items: start; }
+.qlt-sample-image { min-width: 0; margin: 0; }
+.qlt-sample-image img { display: block; width: 100%; height: auto; aspect-ratio: 1.12; object-fit: cover; object-position: 50% 63%; border-radius: 3px 3px 100px 3px; }
+.qlt-accordion { border-top: 1px solid var(--qlt-rule); }
+.qlt-test-topic { border-bottom: 1px solid var(--qlt-rule); }
+.qlt-test-topic summary { display: grid; grid-template-columns: 32px 1fr 20px; align-items: center; gap: 19px; min-height: 86px; padding: 19px 8px 19px 0; cursor: pointer; list-style: none; }
+.qlt-test-topic summary::-webkit-details-marker { display: none; }
+.qlt-topic-index { color: #896122; font-size: 11px; font-weight: 500; }
+.qlt-test-topic h3, .qlt-record-entries h3 { margin: 0; font-size: clamp(22px, 2vw, 29px); line-height: 1.25; font-weight: 500; letter-spacing: -.04em; }
+.qlt-topic-toggle { position: relative; display: block; width: 17px; height: 17px; }
+.qlt-topic-toggle::before, .qlt-topic-toggle::after { content: ''; position: absolute; top: 8px; left: 0; width: 17px; height: 1px; background: #99713b; }
+.qlt-topic-toggle::after { transform: rotate(90deg); }
+.qlt-test-topic[open] .qlt-topic-toggle::after { transform: rotate(0); }
+.qlt-test-topic[open] h3 { color: #896122; }
+.qlt-test-topic summary:hover h3 { color: #896122; }
+.qlt-topic-body { padding: 0 20px 27px 51px; }
+.qlt-topic-body p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.9; }
+.qlt-records { padding-top: 68px; }
+.qlt-records-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(35px, 6vw, 85px); align-items: center; }
+.qlt-records-grid > div > .kicker { margin-bottom: 15px; font-size: 8px; }
+.qlt-record-entries { margin-top: 27px; }
+.qlt-record-entries article { position: relative; display: grid; grid-template-columns: 32px 1fr; gap: 19px; padding-block: 22px; border-top: 1px solid var(--qlt-rule); }
+.qlt-record-entries .qlt-topic-index { padding-top: 5px; }
+.qlt-record-entries p { margin: 12px 0 0; color: var(--muted); font-size: 14px; line-height: 1.85; }
+.qlt-record-image { margin: 0; min-width: 0; }
+.qlt-record-image img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 85px 3px 3px 3px; }
+.qlt-next { margin-block: 58px 70px; }
+.qlt-process-link { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 35px; padding: 33px 38px; border-top: 2px solid #ad8c53; background: #eee8dc; }
+.qlt-process-link .kicker { font-size: 8px; }
+.qlt-process-link h2 { margin: 14px 0 0; font-size: clamp(30px, 3.2vw, 45px); line-height: 1.16; font-weight: 500; letter-spacing: -.05em; }
+.qlt-process-arrow { display: grid; place-items: center; width: 75px; height: 75px; border: 1px solid #af8c50; border-radius: 50%; color: #896122; transition: background .18s, color .18s; }
+.qlt-process-arrow svg { width: 34px; height: 34px; stroke: currentColor; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+.qlt-process-link:is(:hover, :focus-visible) .qlt-process-arrow { background: var(--ink); border-color: var(--ink); color: #e0c18c; }
+@media (min-width: 701px) and (max-width: 1100px) {
+  .qlt-hero-grid { gap: 35px; }
+  .qlt-hero h1 { font-size: 47px; }
+  .qlt-hero-copy p { font-size: 13px; }
+  .qlt-hero-copy .qlt-hero-lead { font-size: 15px; }
+  .qlt-standard { grid-template-columns: 1fr 1.1fr; gap: 27px; padding: 27px; }
+  .qlt-certification { border-right: 0; padding-right: 0; }
+  .qlt-standard-copy { grid-column: 1 / -1; padding-top: 20px; border-top: 1px solid var(--qlt-rule); }
+  .qlt-standard-neutral .qlt-standard-copy { grid-column: auto; padding-top: 0; border-top: 0; }
+  .qlt-standard-copy .qlt-text-link { font-size: 12px; }
+  .qlt-testing-grid { gap: 32px; }
+  .qlt-test-topic summary { min-height: 78px; gap: 13px; grid-template-columns: 24px 1fr 17px; }
+  .qlt-test-topic h3 { font-size: 23px; }
+  .qlt-topic-body { padding-left: 37px; padding-right: 6px; }
+  .qlt-topic-body p { font-size: 13px; }
+  .qlt-records-grid { gap: 35px; }
+  .qlt-records h2 { font-size: 39px; }
+  .qlt-record-entries p { font-size: 13px; }
+}
+@media (max-width: 700px) {
+  .qlt-hero { padding-top: 30px; }
+  .qlt-hero .section-label { padding-bottom: 25px; }
+  .qlt-hero-grid { grid-template-columns: 1fr; gap: 27px; padding-bottom: 32px; }
+  .qlt-hero h1 { font-size: clamp(41px, 9vw, 57px); margin-block: 20px 23px; }
+  .qlt-hero-copy p { font-size: 13px; }
+  .qlt-hero-copy .qlt-hero-lead { font-size: 15px; }
+  .qlt-hero-image img { aspect-ratio: 1.25; border-top-right-radius: 75px; }
+  .qlt-hero-image figcaption, .qlt-sample-image figcaption, .qlt-record-image figcaption { font-size: 5px; letter-spacing: .9px; }
+  .qlt-standard, .qlt-standard-neutral { grid-template-columns: 1fr; gap: 24px; padding: 26px 23px; }
+  .qlt-standard-title h2 { font-size: 33px; }
+  .qlt-certification { padding: 23px 0 0; border: 0; border-top: 1px solid var(--qlt-rule); }
+  .qlt-certification strong { font-size: 37px; }
+  .qlt-standard-copy { padding-top: 22px; border-top: 1px solid var(--qlt-rule); }
+  .qlt-standard-copy p { font-size: 13px; }
+  .qlt-standard-copy .qlt-text-link { font-size: 11px; gap: 17px; }
+  .qlt-testing { padding-top: 41px; }
+  .qlt-testing .section-label, .qlt-records .section-label { padding-bottom: 24px; }
+  .qlt-section-heading h2, .qlt-records h2 { font-size: 36px; }
+  .qlt-section-index { display: none; }
+  .qlt-scope-note { grid-template-columns: 1fr; gap: 9px; margin: 23px 0 27px; }
+  .qlt-scope-note p { font-size: 12px; }
+  .qlt-testing-grid { grid-template-columns: 1fr; gap: 28px; }
+  .qlt-sample-image img { aspect-ratio: 1.4; border-bottom-right-radius: 75px; }
+  .qlt-test-topic summary { grid-template-columns: 24px 1fr 17px; min-height: 76px; gap: 13px; }
+  .qlt-test-topic h3, .qlt-record-entries h3 { font-size: 25px; }
+  .qlt-topic-body { padding-left: 37px; padding-right: 5px; }
+  .qlt-topic-body p { font-size: 14px; }
+  .qlt-records { padding-top: 44px; }
+  .qlt-records-grid { grid-template-columns: 1fr; gap: 29px; }
+  .qlt-record-entries article { grid-template-columns: 24px 1fr; gap: 13px; }
+  .qlt-record-entries p { font-size: 14px; }
+  .qlt-record-image img { aspect-ratio: 1.15; border-top-left-radius: 70px; }
+  .qlt-next { margin-block: 36px 45px; }
+  .qlt-process-link { gap: 17px; padding: 27px 21px; }
+  .qlt-process-link h2 { font-size: 30px; }
+  .qlt-process-arrow { width: 45px; height: 45px; }
+  .qlt-process-arrow svg { width: 23px; height: 23px; }
+}
+@media (prefers-reduced-motion: reduce) { .qlt-process-arrow { transition: none; } }

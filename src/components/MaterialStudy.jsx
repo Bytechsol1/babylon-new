@@ -1,5 +1,5 @@
-import { useId } from 'react';
-import heroReference from '../assets/hero-reference-clean.png';
+import { useId, useState } from 'react';
+import heroReference from '../assets/hero-reference-clean.webp';
 
 const stages = [
   { number: '01', name: 'Formulate', offset: '4%' },
@@ -9,6 +9,7 @@ const stages = [
 
 export default function MaterialStudy({ onOpen }) {
   const orbitPathId = useId();
+  const [paused, setPaused] = useState(false);
 
   return (
     <div className="hero-visual">
@@ -19,7 +20,7 @@ export default function MaterialStudy({ onOpen }) {
         <img src={heroReference} alt="Amber serum and laboratory glassware against a navy arch, with stone plinths and a soft cream formulation." width="1676" height="939" fetchPriority="high" />
       </div>
       <div className="orbit-window">
-        <svg className="orbit-system" viewBox="0 0 600 600" role="group" aria-label="Our process, from formulation to scale">
+        <svg className={`orbit-system${paused ? ' is-paused' : ''}`} viewBox="0 0 600 600" role="group" aria-label="Our process, from formulation to scale">
           <defs>
             <path id={orbitPathId} d="M300 28a272 272 0 1 1 0 544a272 272 0 1 1 0-544" />
           </defs>
@@ -36,6 +37,7 @@ export default function MaterialStudy({ onOpen }) {
           ))}
         </svg>
       </div>
+      <div className="hero-image-controls"><span>ILLUSTRATIVE PRODUCT STUDY</span><button type="button" aria-pressed={paused} onClick={() => setPaused(value => !value)}>{paused ? 'Play orbit' : 'Pause orbit'} <span aria-hidden="true">{paused ? '▷' : 'Ⅱ'}</span></button></div>
     </div>
   );
 }

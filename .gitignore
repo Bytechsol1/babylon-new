@@ -8,3 +8,7 @@ preview*.png
 .browser-profile/
 .browser-profile-edge/
 qa.mjs
+.browser-profile-qa/
+.env
+.env.*
+!.env.example

@@ -1,34 +1,35 @@
 import { useEffect, useRef, useState } from 'react';
 import { createFrameSequence } from '../frameSequence.js';
+import '../frame-hero.css';
 
 const chapters = [
   {
     label: 'Our story',
     title: 'A little curiosity.',
     emphasis: 'A new kind of beauty.',
-    description: 'Since 2016, Babylon has brought bold ideas to clean beauty. We combine cosmetic innovation with care for safety, quality and affordability.',
+    description: 'Founded in 2016, Babylon works in cosmetic manufacturing. Explore your product idea and the formulation and manufacturing work it may need.',
     detail: 'EST. 2016 · BUILT ON CURIOSITY',
   },
   {
     label: 'Our mission',
-    title: 'Beautiful results.',
+    title: 'Your vision.',
     emphasis: 'Thoughtful beginnings.',
-    description: 'Clean, ethical and effective cosmetics, made with your well-being in mind. Because the beauty you create should reflect the things you believe in.',
-    detail: 'CLEAN BEAUTY · CLEAR PURPOSE',
+    description: 'Our mission is to support brands in developing cosmetics that reflect their vision, beginning with the product idea and a clear brief.',
+    detail: 'YOUR VISION · A CLEAR STARTING POINT',
   },
   {
     label: 'Our standards',
     title: 'Care in every detail.',
     emphasis: 'Science in every drop.',
-    description: 'Innovation drives us. Rigorous testing, carefully chosen ingredients and Good Manufacturing Practices guide every step, from formulation to packaging.',
-    detail: 'INNOVATION · SAFETY · GMP',
+    description: 'Define the specifications, review samples, and discuss the testing and documentation relevant to your project. Clear checkpoints give each stage a purpose.',
+    detail: 'BRIEF · SAMPLES · APPROVALS',
   },
   {
     label: 'Your possibilities',
     title: 'Your next big idea.',
     emphasis: 'Room to begin.',
-    description: 'High-quality clean beauty, within reach. With affordable pricing, low minimum orders and swift lead times, we help brands of every size bring their vision to life.',
-    detail: 'LOW MOQ · SHORT LEAD TIMES · FAIR PRICING',
+    description: 'Bring an idea, an existing formula, or a product brief. Explore OEM, ODM, and co-development to find a way of working that fits your starting point.',
+    detail: 'OEM · ODM · CO-DEVELOPMENT',
   },
 ];
 

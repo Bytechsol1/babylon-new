@@ -1,0 +1,108 @@
+/* Products: a photographic brief, using the existing Babylon design tokens. */
+.prod-page { --prod-rule: #d3c3a4; --prod-gold: #896122; }
+.prod-hero { padding-top: 43px; }
+.prod-hero .section-label { padding-bottom: 34px; }
+.prod-hero-heading { display: grid; grid-template-columns: 1.2fr .85fr; gap: 70px; align-items: end; margin-bottom: 37px; }
+.prod-hero h1 { margin: 0; font-size: clamp(46px, 5.2vw, 76px); line-height: 1.05; font-weight: 600; letter-spacing: -.06em; animation: none; }
+.prod-hero h1 em { display: block; font-size: 1em; font-style: normal; font-weight: 400; line-height: 1.15; letter-spacing: -.06em; white-space: normal; }
+.prod-hero-heading > div { max-width: 450px; padding-bottom: 4px; }
+.prod-hero-heading .kicker { font-size: 8px; letter-spacing: 1.3px; }
+.prod-hero-heading p { color: var(--muted); font-size: 14px; line-height: 1.85; margin: 14px 0 11px; }
+.prod-text-link { display: inline-flex; justify-content: space-between; align-items: center; gap: 27px; min-height: 44px; padding-block: 5px; border-bottom: 1px solid #b2935c; font-size: 12px; font-weight: 500; }
+.prod-text-link > span { color: var(--prod-gold); font-size: 23px; font-weight: 400; }
+.prod-text-link:hover { color: var(--prod-gold); }
+.prod-hero-figure { margin: 0; }
+.prod-hero-figure img { display: block; width: 100%; height: auto; max-height: 530px; aspect-ratio: 2.55; object-fit: cover; object-position: 50% 42%; border-radius: 3px 95px 3px 3px; }
+.prod-hero-figure figcaption { display: flex; justify-content: space-between; gap: 15px; margin-top: 15px; text-align: left; color: #77613a; font-size: 7px; letter-spacing: 1.35px; }
+.prod-topic-nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; margin-top: 29px; border-block: 1px solid var(--prod-rule); }
+.prod-topic-nav a { display: flex; align-items: center; gap: 20px; min-height: 65px; padding-block: 10px; font-size: 13px; font-weight: 500; }
+.prod-topic-nav a > span:first-child { font-size: 10px; color: var(--prod-gold); }
+.prod-topic-nav a > span:last-child { margin-left: auto; color: var(--prod-gold); font-size: 21px; }
+.prod-topic-nav a:hover { color: var(--prod-gold); }
+.prod-discovery { padding-block: 73px 60px; }
+.prod-discovery .section-label { padding-bottom: 31px; }
+.prod-discovery-heading { display: grid; grid-template-columns: 1.2fr 1fr; gap: 70px; align-items: center; margin-bottom: 45px; }
+.prod-discovery h2, .prod-invitation h2, .prod-approved h2 { margin: 0; font-size: clamp(35px, 3.8vw, 54px); line-height: 1.13; font-weight: 550; letter-spacing: -.055em; }
+.prod-discovery-heading p { color: var(--muted); font-size: 14px; line-height: 1.85; margin: 0 0 13px; }
+.prod-discovery-heading p:last-child { margin-bottom: 0; }
+.prod-studies { display: grid; grid-template-columns: 1.12fr 1fr; gap: 40px 65px; }
+.prod-study { min-width: 0; scroll-margin-top: calc(var(--site-header-height, 84px) + 25px); }
+.prod-study-0 { grid-row: span 2; }
+.prod-study figure { margin: 0; }
+.prod-study-photo { position: relative; overflow: hidden; border-radius: 3px; background: #eee5d7; }
+.prod-study-photo img { display: block; width: 100%; height: auto; aspect-ratio: 2.05; object-fit: cover; }
+.prod-study-0 .prod-study-photo { border-top-right-radius: 115px; }
+.prod-study-0 img { aspect-ratio: .83; object-position: 57% 50%; }
+.prod-study-1 .prod-study-photo { border-top-left-radius: 70px; }
+.prod-study-2 .prod-study-photo { border-bottom-right-radius: 70px; }
+.prod-study-1 img { object-position: 50% 50%; }
+.prod-study-2 img { object-position: 50% 37%; }
+.prod-study-index { position: absolute; left: 0; bottom: 0; display: grid; place-items: center; width: 49px; height: 49px; background: var(--cream); color: var(--prod-gold); font-size: 12px; }
+.prod-study figcaption { display: flex; justify-content: space-between; gap: 12px; margin-top: 12px; text-align: left; color: #77613a; font-size: 6px; letter-spacing: 1.3px; }
+.prod-study-copy { padding-top: 19px; }
+.prod-study h3 { margin: 0 0 13px; font-size: clamp(27px, 2.6vw, 37px); line-height: 1.2; font-weight: 500; letter-spacing: -.045em; }
+.prod-study p { max-width: 500px; margin: 0 0 12px; color: var(--muted); font-size: 14px; line-height: 1.8; }
+.prod-study .prod-text-link { font-size: 11px; }
+.prod-approved { padding-block: 30px 50px; }
+.prod-approved > article { display: grid; grid-template-columns: 40px 1fr auto; align-items: center; gap: 25px; padding-block: 25px; border-bottom: 1px solid var(--prod-rule); }
+.prod-approved h3 { margin: 0 0 10px; font-size: 27px; font-weight: 500; letter-spacing: -.04em; }
+.prod-approved p { margin: 0; color: var(--muted); font-size: 14px; }
+.prod-invitation { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: 65px; padding-block: 35px 45px; margin-bottom: 55px; border-block: 1px solid var(--prod-rule); }
+.prod-invitation .kicker { font-size: 8px; margin-bottom: 18px; }
+.prod-invitation h2 { font-size: clamp(32px, 3.1vw, 45px); }
+.prod-invitation-actions { justify-self: end; display: flex; flex-direction: column; gap: 17px; align-items: stretch; }
+.prod-primary-cta { display: flex; align-items: center; justify-content: space-between; gap: 35px; min-height: 54px; padding: 10px 22px; border: 1px solid var(--ink); background: var(--ink); color: var(--cream); font-size: 13px; font-weight: 500; border-radius: 3px; }
+.prod-primary-cta > span { color: #e0be7e; font-size: 25px; }
+.prod-primary-cta:hover { background: #303064; }
+.prod-service-link { display: flex; align-items: center; justify-content: space-between; gap: 25px; min-height: 44px; padding-block: 7px; color: var(--muted); font-size: 11px; border-bottom: 1px solid #b2935c; }
+.prod-service-link > span { font-size: 20px; color: var(--prod-gold); }
+.prod-service-link:hover { color: var(--ink); }
+@media (min-width: 701px) and (max-width: 1000px) {
+  .prod-hero-heading { gap: 35px; }
+  .prod-hero h1 { font-size: 49px; }
+  .prod-hero-heading p { font-size: 13px; }
+  .prod-topic-nav { gap: 25px; }
+  .prod-topic-nav a { gap: 12px; font-size: 11px; }
+  .prod-discovery-heading { gap: 35px; }
+  .prod-studies { grid-template-columns: 1fr; gap: 45px; }
+  .prod-study { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 35px; }
+  .prod-study-0 { grid-row: auto; }
+  .prod-study-photo img, .prod-study-0 img { aspect-ratio: 1.15; }
+  .prod-study-1 figure { grid-column: 2; grid-row: 1; }
+  .prod-study-1 .prod-study-copy { grid-column: 1; grid-row: 1; }
+  .prod-study-copy { padding-top: 0; }
+  .prod-study h3 { font-size: 31px; }
+  .prod-invitation { gap: 35px; }
+}
+@media (max-width: 700px) {
+  .prod-hero { padding-top: 30px; }
+  .prod-hero .section-label { padding-bottom: 27px; }
+  .prod-hero-heading { grid-template-columns: 1fr; gap: 23px; margin-bottom: 26px; }
+  .prod-hero h1 { font-size: clamp(43px, 9vw, 60px); }
+  .prod-hero-heading p { font-size: 13px; margin-block: 12px 5px; }
+  .prod-hero-heading .kicker { font-size: 7px; }
+  .prod-hero-figure img { aspect-ratio: 1.5; border-top-right-radius: 55px; }
+  .prod-hero-figure figcaption { font-size: 5px; letter-spacing: .8px; }
+  .prod-topic-nav { grid-template-columns: 1fr; gap: 0; margin-top: 20px; }
+  .prod-topic-nav a { min-height: 49px; font-size: 12px; }
+  .prod-topic-nav a + a { border-top: 1px solid var(--line); }
+  .prod-discovery { padding-block: 43px; }
+  .prod-discovery .section-label { padding-bottom: 24px; }
+  .prod-discovery-heading { grid-template-columns: 1fr; gap: 24px; margin-bottom: 30px; }
+  .prod-discovery h2 { font-size: 37px; }
+  .prod-discovery-heading p { font-size: 13px; }
+  .prod-studies { grid-template-columns: 1fr; gap: 37px; }
+  .prod-study-0 { grid-row: auto; }
+  .prod-study-photo img, .prod-study-0 img { aspect-ratio: 1.2; object-position: center; }
+  .prod-study-0 .prod-study-photo { border-top-right-radius: 80px; }
+  .prod-study-1 .prod-study-photo { border-top-left-radius: 60px; }
+  .prod-study-2 .prod-study-photo { border-bottom-right-radius: 60px; }
+  .prod-study-copy { padding-top: 18px; }
+  .prod-study h3 { font-size: 31px; }
+  .prod-study p { font-size: 14px; }
+  .prod-approved > article { grid-template-columns: 25px 1fr; gap: 15px; }
+  .prod-approved article > a { grid-column: 2; justify-self: start; }
+  .prod-invitation { grid-template-columns: 1fr; gap: 27px; padding-block: 29px; margin-bottom: 45px; }
+  .prod-invitation h2 { font-size: 35px; }
+  .prod-invitation-actions { justify-self: stretch; }
+}

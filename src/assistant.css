@@ -1,0 +1,30 @@
+/* Extends the existing ivory/navy/gold chat panel with an icon-only launcher. */
+.assistant-shell .assistant-toggle { position: relative; justify-content: center; width: 72px; height: 72px; min-height: 72px; padding: 0; gap: 0; border: 0; border-radius: 30px 30px 18px 8px; background: transparent; color: #e5c78f; box-shadow: none; filter: drop-shadow(0 5px 9px #171b4433); transition: filter .18s; }
+.assistant-launcher-mascot { display: block; width: 100%; height: 100%; object-fit: contain; user-select: none; }
+.assistant-launcher-close { position: relative; display: block; width: 30px; height: 30px; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.assistant-shell .assistant-toggle:is(:hover, :focus-visible) { filter: drop-shadow(0 7px 12px #171b4445); }
+.assistant-shell .assistant-toggle:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+.assistant-shell .assistant-toggle[aria-expanded=true] { border: 1px solid #caa15d; background: #101d35; }
+.assistant-shell .assistant-toggle[aria-expanded=true]::before { content: ''; position: absolute; inset: 5px; border: 1px solid #d4b57550; border-radius: 25px 25px 13px 5px; pointer-events: none; }
+.assistant-shell .assistant-heading > button { flex-shrink: 0; min-width: 44px; min-height: 44px; padding: 0; }
+.assistant-service-state { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 32px; margin-top: 3px; }
+.assistant-service-state .prototype-pill { color: #74603a; border-color: #b7a484; font-size: 9px; }
+.assistant-service-state[data-mode=ready] .prototype-pill { color: var(--ink); }
+.assistant-service-state > button { min-height: 44px; padding: 7px 0; border-radius: 0; background: transparent; font-size: 10px; text-decoration: underline; text-underline-offset: 4px; }
+.assistant-shell .assistant-messages { min-height: 45px; }
+.assistant-message { padding-bottom: 13px; }
+.assistant-messages .assistant-answer { white-space: pre-wrap; overflow-wrap: anywhere; }
+.assistant-messages .assistant-reviewed { font-size: 9px; color: #79623b; }
+.assistant-message-handoff { display: flex; flex-wrap: wrap; gap: 3px 15px; }
+.assistant-message-handoff a { display: inline-flex; align-items: center; min-height: 44px; font-size: 10px; color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+.assistant-loading { margin: 9px 0; font-size: 11px; color: #79623b; }
+.assistant-suggestions { display: grid; gap: 5px; padding-top: 5px; }
+.assistant-suggestions button { display: flex; align-items: center; justify-content: space-between; gap: 15px; min-height: 44px; padding: 8px 11px; border: 1px solid var(--line); border-radius: 4px; background: #f1ece2; font-size: 11px; line-height: 1.6; text-align: left; }
+.assistant-suggestions button > span { flex-shrink: 0; color: #896122; }
+.assistant-shell .assistant-actions { gap: 4px 16px; margin-block: 10px; }
+.assistant-shell .assistant-actions a { min-height: 44px; }
+.assistant-form-footer { display: flex; justify-content: space-between; gap: 10px; margin-top: 9px; font-size: 8px; color: var(--muted); }
+.assistant-shell .assistant-input-row input { font-size: 16px; }
+.assistant-shell .assistant-input-row button:disabled { cursor: default; }
+@media (max-width: 550px) { .assistant-shell .assistant-toggle { width: 64px; height: 64px; min-height: 64px; } }
+@media (prefers-reduced-motion: reduce) { .assistant-shell .assistant-toggle { transition: none; } }

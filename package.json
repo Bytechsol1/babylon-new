@@ -7,6 +7,10 @@
     "dev": "vite --host 127.0.0.1 --port 4187 --strictPort",
     "start": "npm run dev",
     "build": "vite build",
+    "test": "node --test tests/inquiry.test.mjs tests/faq.test.mjs",
+    "test:browser": "node tests/browser.mjs",
+    "test:faq-browser": "node tests/faq-browser.mjs",
+    "test:publication": "node tests/publication.test.mjs",
     "preview": "vite preview --host 127.0.0.1 --port 4187 --strictPort"
   },
   "dependencies": {

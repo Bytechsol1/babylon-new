@@ -1,6 +1,6 @@
 const steps = [
   { number: '01', title: 'Formulate', description: 'Transform ideas into tailored formulas.' },
-  { number: '02', title: 'Refine', description: 'Perfect performance, texture and stability.' },
+  { number: '02', title: 'Refine', description: 'Evaluate texture and stability.' },
   { number: '03', title: 'Scale', description: 'Move to production with confidence.' },
 ];
 
