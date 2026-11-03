@@ -20,7 +20,7 @@ function ScienceOverview() {
     <section className="science-overview content-width"><SectionLabel number="02">A DIFFERENT KIND OF CHEMISTRY</SectionLabel>
       <div className="science-overview-grid">
         <div><h2>Serious science.<br /><em>Clear possibilities.</em></h2><p>Understand the methods behind the product, from formulation and materials to process engineering and scale-up.</p><ArrowLink to="/capabilities">Explore our capabilities</ArrowLink></div>
-        <div className="science-visual"><ChemistryAnimation sectionRef={sectionRef} /><p className="science-caption">AN ILLUSTRATION OF COSMETIC SCIENCE</p></div>
+        <div className="science-visual"><ChemistryAnimation sectionRef={sectionRef} /></div>
         <ol className="capability-mini">{capabilities.map((item, index) => <li key={item.title}><span>0{index + 1}</span>{item.title}</li>)}</ol>
       </div>
     </section>
@@ -38,11 +38,11 @@ function Note({ children }) { return <p className="confirmation-note"><span aria
 export function Certificate({ compact = false }) {
   if (!certificationVisible()) return null;
   return <div className={`certificate ${compact ? 'compact' : ''}`}>
-    <span className="certificate-symbol" aria-hidden="true">✳</span>
-    <div><span className="kicker">COSMETICS · GOOD MANUFACTURING PRACTICES</span><h3>{certification.standard}</h3><p>Certification held through {certification.heldThroughYear}.</p>
+    <span className="kicker">COSMETICS · GOOD MANUFACTURING PRACTICES</span>
+    <h3>{certification.standard}</h3>
       {!compact && certification.scope && <p>Scope: {certification.scope}</p>}
       {!compact && certification.confirmedExpiry && <p>Expiry: {certification.confirmedExpiry}</p>}
-    </div>
+    <Link className="certificate-link" to="/quality">Explore our quality approach<span aria-hidden="true">↗</span></Link>
   </div>;
 }
 

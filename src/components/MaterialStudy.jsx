@@ -37,7 +37,7 @@ export default function MaterialStudy({ onOpen }) {
           ))}
         </svg>
       </div>
-      <div className="hero-image-controls"><span>ILLUSTRATIVE PRODUCT STUDY</span><button type="button" aria-pressed={paused} onClick={() => setPaused(value => !value)}>{paused ? 'Play orbit' : 'Pause orbit'} <span aria-hidden="true">{paused ? '▷' : 'Ⅱ'}</span></button></div>
+      <div className="hero-image-controls"><button type="button" aria-pressed={paused} onClick={() => setPaused(value => !value)}>{paused ? 'Play orbit' : 'Pause orbit'} <span aria-hidden="true">{paused ? '▷' : 'Ⅱ'}</span></button></div>
     </div>
   );
 }
