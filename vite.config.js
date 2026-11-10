@@ -2,13 +2,17 @@ import { defineConfig, loadEnv } from 'vite';
 import { createConfigHandler } from './api/config.js';
 import { createInquiryHandler } from './api/inquiry.js';
 import { createFAQHandler } from './api/faq.js';
-import { requiredEnv } from './server/security.js';
+
+const serverVariableNames = [
+  'SITE_ORIGIN', 'RATE_LIMIT_SECRET', 'SUPABASE_URL', 'SUPABASE_PUBLISHABLE_KEY',
+  'UPSTASH_REDIS_REST_URL', 'UPSTASH_REDIS_REST_TOKEN', 'OPENAI_API_KEY', 'VERCEL',
+];
 
 export default defineConfig(({ mode }) => {
   const local = loadEnv(mode, process.cwd(), '');
   // Pass a fresh server-only snapshot instead of mutating process.env. This lets
   // removed/replaced local secrets take effect when Vite reloads its config.
-  const serverEnv = Object.fromEntries([...requiredEnv, 'OPENAI_API_KEY', 'VERCEL', 'SUPABASE_URL', 'SUPABASE_PUBLISHABLE_KEY'].map(key => [key, process.env[key] ?? local[key]]));
+  const serverEnv = Object.fromEntries(serverVariableNames.map(key => [key, process.env[key] ?? local[key]]));
   return {
     esbuild: { jsx: 'automatic' },
     plugins: [{
