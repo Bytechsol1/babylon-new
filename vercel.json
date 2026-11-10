@@ -4,8 +4,11 @@
   "installCommand": "npm ci",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "rewrites": [
-    { "source": "/((?!api(?:/|$)|assets(?:/|$)|frames(?:/|$)|.*\\.[^/]+$).*)", "destination": "/index.html" }
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/index", "destination": "/", "permanent": true }
   ],
   "headers": [
     { "source": "/(.*)", "headers": [

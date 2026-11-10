@@ -1,7 +1,5 @@
 import { createHmac } from 'node:crypto';
-
-export const requiredEnv = ['SITE_ORIGIN', 'TURNSTILE_SITE_KEY', 'TURNSTILE_SECRET_KEY', 'UPSTASH_REDIS_REST_URL', 'UPSTASH_REDIS_REST_TOKEN', 'RATE_LIMIT_SECRET', 'RESEND_API_KEY', 'INQUIRY_FROM', 'INQUIRY_TO'];
-export function inquiryReady(env = process.env) { return requiredEnv.every(key => Boolean(env[key]?.trim())); }
+import { Buffer } from 'node:buffer';
 export function reply(res, code, body) {
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
   res.setHeader('Cache-Control', 'no-store');
@@ -9,10 +7,10 @@ export function reply(res, code, body) {
   res.statusCode = code; res.end(JSON.stringify(body));
 }
 export function checkOrigin(req, env = process.env) {
-  try { return new URL(req.headers.origin).origin === new URL(env.SITE_ORIGIN).origin; } catch { return false; }
+  try { return req.headers.origin === new URL(env.SITE_ORIGIN).origin; } catch { return false; }
 }
 export async function readJSON(req) {
-  if (!String(req.headers['content-type'] || '').toLowerCase().startsWith('application/json')) throw Object.assign(new Error('Please send JSON data.'), { status: 415 });
+  if (String(req.headers['content-type'] || '').split(';')[0].trim().toLowerCase() !== 'application/json') throw Object.assign(new Error('Please send JSON data.'), { status: 415 });
   if (Number(req.headers['content-length'] || 0) > 12000) throw Object.assign(new Error('The request is too large.'), { status: 413 });
   if (req.body !== undefined) {
     const text = typeof req.body === 'string' ? req.body : JSON.stringify(req.body);

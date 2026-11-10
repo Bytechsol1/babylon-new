@@ -8,5 +8,6 @@ import './footer.css';
 import './buttons.css';
 import './typography.css';
 import './site.css';
+import './readability.css';
 
 createRoot(document.getElementById('root')).render(<StrictMode><App /></StrictMode>);

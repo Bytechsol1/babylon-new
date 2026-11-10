@@ -2,7 +2,7 @@
 
 Updated for the client brief on **3 November 2026**. All review items remain pending. Appearance on the legacy website is evidence of earlier messaging, not new approval to publish a stronger claim.
 
-Confirmed company facts: **founded 2016**; **2221 Oakland Rd, San Jose, CA 95131**. The brief confirms **ISO 22716 held through 2027**; scope and exact expiry are not inferred from that year. The public general email is **info@babylonllc.com**, separate from an approved automated-form recipient.
+Confirmed company facts: **founded 2016**; **2221 Oakland Rd, San Jose, CA 95131**. The brief confirms **ISO 22716 held through 2027**; scope and exact expiry are not inferred from that year. The public general email is **info@babylonllc.com**, explicitly authorized as the automated contact-form recipient on 2026-11-07.
 
 ## Public and draft separation
 
@@ -78,7 +78,7 @@ Local review: http://127.0.0.1:4187/about?review=1
 - **Our Story & Our Mission:** [confirm with Cody: clean, ethical, effective, and health or well-being claims]
   Approve the intended meaning and evidence for each term before any such wording is added. The public page currently uses neutral copy and omits clean-beauty positioning and health outcomes.
 - **Innovation:** [confirm with Cody: any specific innovation, technology, or results claims]
-  The public value describes exploring ideas only. No named technology, measured result, or industry-leadership claim is included.
+  The supplied rewrite now approves MES/lot traceability, camera inspection, robotic cells tested in simulation and machine learning on production data. Measured results, equipment counts and leadership claims remain unapproved.
 - **Safety:** [confirm with Cody: safety testing and ingredient review details]
   Confirm processes, evidence, applicability, and approved wording before stating that every product undergoes rigorous testing or that ingredient selection assures safety.
 - **Good Manufacturing Practices (GMP):** [confirm with Cody: applicable GMP standard and verified manufacturing practices]
@@ -94,57 +94,27 @@ Local review: http://127.0.0.1:4187/about?review=1
 
 ## FAQ
 
-Local review: http://127.0.0.1:4187/faq?review=1
+The supplied rewrite explicitly approves the facts behind six public answers: the existing three development models, bringing an existing formula, the San Jose address, founded 2016, named in-house production technologies, and ISO 22716 certification through 2027. These records have source/review metadata in src/content.js. They do not include fill-only, ownership, NDA or timing promises.
 
-- **Answer approval:** [confirm with Cody: approved answer, supporting source, and review date for every FAQ entry]
-- **Assistant activation:** the UI is connected to the server handler, with optional server-only OpenAI matching that can only select an approved FAQ record. The real service remains a prototype until approved answers and rate-limit settings are supplied. A development AI key, local origin and private rate-limit secret are configured locally; the shared key needs rotation. [confirm with Cody: approved FAQ wording and review dates, production origin, Redis configuration, production secret, and external processing disclosure]
-- **Connection verification (2026-11-04):** a synthetic routing request to OpenAI returned HTTP 429. Successful provider connectivity is not verified; inspect the project's billing/quota and rate limits before retrying. No FAQ records were approved or published by this test.
+Still awaiting confirmation: exact product/packaging formats; MOQ; lead times; test locations and inclusions; exact certificate scope/expiry and issuing body; reorders; formula ownership/licensing; and NDA arrangements. Pending answers stay off the public FAQ.
 
-Every question below needs approved wording, a supporting source, and a valid calendar review date before status can become `approved`:
-
-1. What is the difference between OEM, ODM, and co-development?
-   Answer: [Cody to confirm answer]
-   Review date: [confirm with Cody: answer review date]
-2. Which product formats can Babylon manufacture?
-   Answer: [Cody to confirm answer]
-   Review date: [confirm with Cody: answer review date]
-3. What is the minimum order quantity?
-   Answer: [Cody to confirm answer]
-   Review date: [confirm with Cody: answer review date]
-4. How long does development and production take?
-   Answer: [Cody to confirm answer]
-   Review date: [confirm with Cody: answer review date]
-5. Can I bring an existing formula?
-   Answer: [Cody to confirm answer]
-   Review date: [confirm with Cody: answer review date]
-6. Which quality tests and documents are included?
-   Answer: [Cody to confirm answer]
-   Review date: [confirm with Cody: answer review date]
-7. What is the scope and expiry of the ISO 22716 certification?
-   Answer: [Cody to confirm answer]
-   Review date: [confirm with Cody: answer review date]
-8. How do reorders work?
-   Answer: [Cody to confirm answer]
-   Review date: [confirm with Cody: answer review date]
-9. How are formula ownership and confidentiality handled?
-   Answer: [Cody to confirm answer]
-   Review date: [confirm with Cody: answer review date]
+The launcher is hidden while the backend is unconfigured or unavailable. This rewrite does not change API configuration or activate a service. See REWRITE-IMPLEMENTATION.md for the source decisions.
 
 ## Contact
 
 Local review: http://127.0.0.1:4187/contact?review=1
 
-- **Recipient:** [confirm with Cody: project inquiry recipient and response expectations]
+- **Recipient:** `info@babylonllc.com` is explicitly authorized for contact-form delivery. Response-time commitments still require approval.
 - **Quantity options:** [confirm with Cody: first-order estimate ranges as inquiry options rather than MOQs]
 - **Production security:** [confirm with Cody: production hostname and Turnstile configuration]
 - **Rate limiting:** [confirm with Cody: shared Redis rate-limit configuration and private HMAC secret]
-- **Delivery:** [confirm with Cody: Resend credentials, verified sender, recipient, and genuine delivery verification]
+- **Delivery:** [confirm with Cody: Resend credentials, verified sender/domain, and genuine inbox delivery verification] The recipient is approved; provider access and actual delivery are still unverified. See CONTACT-FORM-SETUP.md.
 
 ## Operational publication dependencies
 
 - Confirm the production origin, Turnstile site/secret keys, shared Redis rate-limit service, HMAC secret, Resend credentials, verified sender, and inquiry recipient using the server-only settings in `.env.example`.
-- Verify a genuine challenge, acknowledged inquiry delivery, failure handling, and IP/session limits on the configured deployment. Until configured, the form clearly downloads a brief and sends nothing.
-- Approve FAQ answers and dates before activating the assistant. The UI now checks and calls `/api/faq`; unknown questions offer the existing inquiry form and email. No question/history log is retained on the server. Configure `SITE_ORIGIN`, `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`, and a random `RATE_LIMIT_SECRET` of at least 32 bytes, then verify the deployed endpoint. Limits are 500 characters and 12 questions per IP/session per hour. The current local endpoint reports zero approved answers and missing backend configuration.
+- Verify a genuine challenge, acknowledged inquiry delivery, failure handling, and IP/session limits on the configured deployment. Until configured, email submission is disabled; a separate brief download explicitly sends nothing.
+- Approve FAQ answers and dates before activating the assistant. The UI now checks and calls `/api/faq`; unknown questions offer the existing inquiry form and email. No question/history log is retained on the server. Configure `SITE_ORIGIN`, `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`, and a random `RATE_LIMIT_SECRET` of at least 32 bytes, then verify the deployed endpoint. Limits are 500 characters and 12 questions per IP/session per hour. The source-backed FAQ now contains six approved answers; live backend readiness remains a separate requirement and no API configuration changed in this rewrite.
 - No Intertek mark, customer names/logos, testimonials, awards, or case studies are included. Obtain written permission and approved source material before adding customer material or marks.
 - No specific GMP compliance claim or FDA certification claim is made. Customer formulas, ingredient percentages, and proprietary process settings remain outside public copy and assistant knowledge.
 

@@ -169,6 +169,13 @@ address { font-style: normal; }
 .contact-layout aside address { max-width: 230px; font-size: 14px; margin: 30px 0; }
 .contact-expect { border-top: 1px solid var(--line); margin-top: 35px; padding-top: 25px; }
 .project-form { position: relative; min-width: 0; }
+.project-fields { min-width: 0; margin: 0; padding: 0; border: 0; }
+.project-fields > legend { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.project-fields:disabled { opacity: .72; }
+.form-connection-retry { min-height: 44px; padding: 5px 0; background: transparent; color: var(--ink); font-size: 12px; text-decoration: underline; text-underline-offset: 4px; }
+.form-download { margin-top: 16px; }
+.form-download:disabled { cursor: default; opacity: .5; }
+.form-pending { font-size: 12px; color: var(--muted); }
 .form-mode { display: flex; align-items: baseline; gap: 13px; padding: 20px 22px; background: #f0eadf; border-left: 2px solid #a48145; }
 .form-mode strong { font-size: 9px; letter-spacing: 1.3px; }
 .form-mode p { font-size: 12px; color: #625d52; margin: 8px 0 0; }
@@ -195,6 +202,7 @@ address { font-style: normal; }
 .form-submit-row p { color: var(--muted); font-size: 11px; }
 .form-result { font-size: 14px; padding: 20px; border: 1px solid #8b9d78; background: #edf0e7; margin-top: 25px; }
 .form-result.error { border-color: #b36a50; background: #fbede3; }
+.form-result.info { border-color: #b7a484; background: #f0eadf; }
 .security-area { margin-top: 25px; }
 .security-area > div { margin-top: 15px; }
 .site-footer { padding-block: 30px 90px; }

@@ -1,84 +1,71 @@
-import { useEffect, useId, useRef, useState } from 'react';
+import { useEffect } from 'react';
 import { journey } from '../content.js';
 import { Link } from '../router.jsx';
 import PageReview from './PageReview.jsx';
-import inquiryImage from '../assets/process/project-inquiry.webp';
-import briefImage from '../assets/process/product-brief.webp';
-import formulationImage from '../assets/capabilities/formulation.webp';
-import testingImage from '../assets/capabilities/quality-control.webp';
-import productionImage from '../assets/capabilities/process-engineering.webp';
-import shippingImage from '../assets/process/shipment-support.webp';
+import { editorialImages } from '../editorialImages.js';
 import '../process.css';
+import styles from './ProcessTimeline.module.css';
 
 const stages = [
-  { id: 'inquiry', label: 'START THE CONVERSATION', image: inquiryImage, alt: 'Illustrative project conversation with cosmetic samples and a blank notebook.' },
-  { id: 'brief', label: 'DEFINE THE BRIEF', image: briefImage, alt: 'Illustrative project brief with a blank worksheet, cosmetic samples and a pen.' },
-  { id: 'formula', label: 'FORMULATION & TRANSFER', image: formulationImage, alt: 'Illustrative formulation study with cream in a glass dish and a serum dropper.' },
-  { id: 'samples-testing', label: 'EVALUATION & FEEDBACK', image: testingImage, alt: 'Illustrative sample review with gloved hands transferring a cosmetic sample into a dish.' },
-  { id: 'pilot-production', label: 'PILOT & PRODUCTION', image: productionImage, alt: 'Illustrative laboratory mixing vessel with cosmetic cream and a stainless steel stirrer.' },
-  { id: 'ship-support', label: 'SHIPMENT & SUPPORT', image: shippingImage, alt: 'Illustrative packing study with unbranded cosmetic containers, paper dividers and a blank document envelope.' },
+  { id: 'inquiry', label: 'START THE CONVERSATION', image: editorialImages['process-inquiry'] },
+  { id: 'brief', label: 'DEFINE THE BRIEF', image: editorialImages['process-brief'] },
+  { id: 'formula', label: 'FORMULATION & TRANSFER', image: editorialImages['process-formula'] },
+  { id: 'samples-testing', label: 'EVALUATION & FEEDBACK', image: editorialImages['process-samples'] },
+  { id: 'pilot-production', label: 'PILOT BATCH', image: editorialImages['process-pilot'] },
+  { id: 'ship-support', label: 'PRODUCTION & SHIPPING', image: editorialImages['process-shipping'] },
 ];
 const planning = [
-  ['Order quantity', 'Discuss an appropriate range for the proposed product and manufacturing scope.'],
-  ['Development & testing', 'Agree on the work, evaluation criteria, and approval steps your project needs.'],
-  ['Production & shipping', 'Review the production plan, documents, and delivery requirements together.'],
+  ['Quantity estimate', 'Include your quantity estimate.'],
+  ['Development & testing', 'Include the product requirements and sample feedback.'],
+  ['Production & shipping', 'Include packaging and delivery requirements.'],
 ];
 const number = index => String(index + 1).padStart(2, '0');
-const stageFromHash = () => Math.max(0, stages.findIndex(stage => `#${stage.id}` === window.location.hash));
+const stageTitles = ['Inquiry', 'Brief and quote', 'Formulate or transfer formula', 'Samples and testing', 'Pilot batch', 'Production and shipping'];
+// Reuse approved stage/checkpoint wording without changing shared Home/Services data.
+const visibleStages = stages.map((stage, index) => ({ ...journey[index], ...stage, title: stageTitles[index],
+  ...(index === 0 ? { approval: 'Send your initial project brief.' } : {}),
+  ...(index === 1 ? { text: 'The product specification, development work and project scope are outlined for a quote.' } : {}),
+  ...(index === 5 ? { text: 'Production follows the approved specification, with packaging and delivery requirements identified for the project.' } : {}),
+}));
+const stageAliases = { 'brief-and-quote': 'brief', 'formulate-or-transfer': 'formula', 'formulate-or-transfer-formula': 'formula', 'samples-and-testing': 'samples-testing', 'pilot-batch': 'pilot-production', 'production-and-shipping': 'ship-support' };
 
-function Label({ number: index, children, aside = 'YOUR VISION. OUR ELEMENT.' }) {
-  return <div className="section-label"><span>{index} / {children}</span><i aria-hidden="true" /><span>{aside}</span></div>;
+function Label({ number: index, children, aside = '' }) {
+  return <div className="section-label"><span>{children}</span><i aria-hidden="true" /><span>{aside}</span></div>;
 }
 
 export default function ProcessPage() {
-  const [selected, setSelected] = useState(stageFromHash);
-  const refs = useRef([]);
-  const id = useId();
-  const panelId = `${id}-process-panel`;
-  const step = journey[selected];
-  const stage = stages[selected];
-
   useEffect(() => {
-    const update = () => setSelected(stageFromHash());
-    window.addEventListener('hashchange', update);
-    window.addEventListener('popstate', update);
+    const scrollToStage = () => {
+      const hash = window.location.hash.slice(1);
+      const target = stageAliases[hash] || hash;
+      if (stages.some(stage => stage.id === target)) document.getElementById(target)?.scrollIntoView({ block: 'start' });
+    };
+    const frame = requestAnimationFrame(scrollToStage);
+    window.addEventListener('hashchange', scrollToStage);
+    window.addEventListener('popstate', scrollToStage);
     return () => {
-      window.removeEventListener('hashchange', update);
-      window.removeEventListener('popstate', update);
+      cancelAnimationFrame(frame);
+      window.removeEventListener('hashchange', scrollToStage);
+      window.removeEventListener('popstate', scrollToStage);
     };
   }, []);
 
-  function select(index) {
-    setSelected(index);
-    window.history.replaceState(window.history.state, '', `${window.location.pathname}${window.location.search}#${stages[index].id}`);
-  }
-  function keyDown(event, index) {
-    let next;
-    if (event.key === 'ArrowRight') next = (index + 1) % journey.length;
-    else if (event.key === 'ArrowLeft') next = (index + journey.length - 1) % journey.length;
-    else if (event.key === 'Home') next = 0;
-    else if (event.key === 'End') next = journey.length - 1;
-    else return;
-    event.preventDefault(); select(next); refs.current[next]?.focus();
-  }
-
   return <div className="prc-page">
-    <section className="prc-hero content-width" aria-labelledby="process-page-title"><Label number="05">THE PROCESS</Label><div className="prc-hero-grid"><h1 id="process-page-title">From first hello<em>to first shipment.</em></h1><div className="prc-hero-copy"><p className="prc-hero-lead">A shared brief. Clear approvals.<br />A plan for what comes next.</p><p>Use this guide to understand the conversations, samples, documents, and decisions along the way.</p><Link className="prc-text-link" to="/contact">Start with your brief<span aria-hidden="true">↗</span></Link></div></div></section>
+    <section className="prc-hero content-width" aria-labelledby="process-page-title"><Label number="05">THE PROCESS</Label><div className="prc-hero-grid"><h1 id="process-page-title">From first email <em>to first shipment</em></h1><div className="prc-hero-copy"><p className="prc-hero-lead">Six stages connect the initial brief<br />to production and shipping.</p><p>Samples, testing and a pilot run provide review points along the way.</p><Link className="prc-text-link" to="/contact">Start with your brief<span aria-hidden="true">→</span></Link></div></div></section>
 
-    <section className="prc-journey content-width" id="project-journey" aria-labelledby="process-journey-title"><div className="prc-journey-heading"><h2 id="process-journey-title">Your project, <em>step by step.</em></h2><p>Select a stage to explore the work<br className="prc-desktop-break" /> and the decisions along the way.</p></div>
-      <div className="prc-tabs" role="tablist" aria-label="Explore the six project stages" aria-orientation="horizontal">{journey.map((item, index) => <button ref={node => { refs.current[index] = node; }} type="button" role="tab" key={stages[index].id} id={`${id}-stage-${index}`} aria-controls={panelId} aria-selected={selected === index} tabIndex={selected === index ? 0 : -1} onClick={() => select(index)} onKeyDown={event => keyDown(event, index)}><span className="prc-stage-marker">{number(index)}</span><span className="prc-tab-name">{item.title}</span></button>)}</div>
-
-      <div className="prc-stage-panel" id={panelId} role="tabpanel" aria-labelledby={`${id}-stage-${selected}`} tabIndex={0} data-stage={stage.id}>
-        <figure className="prc-stage-image"><img src={stage.image} alt={stage.alt} width="900" height="900" decoding="async" loading={selected === 0 ? 'eager' : 'lazy'} /><figcaption><span>{number(selected)} / {step.title}</span><span>ILLUSTRATIVE PROJECT STUDY</span></figcaption></figure>
-        <div className="prc-stage-copy"><span className="kicker">{number(selected)} / {stage.label}</span><h3>{step.title}</h3><p className="prc-stage-description">{step.text}</p><dl className="prc-checkpoints"><div className="prc-output"><dt>WHAT TO EXPECT</dt><dd>{step.output}</dd></div><div className="prc-approval"><dt>YOUR CHECKPOINT</dt><dd>{step.approval}</dd></div></dl><Link className="prc-text-link" to={`/contact?question=${encodeURIComponent(`I'd like to discuss the ${step.title} stage of a project.`)}`}>Discuss this stage<span aria-hidden="true">↗</span></Link>
-          <div className="prc-stage-controls"><button type="button" disabled={selected === 0} onClick={() => select(selected - 1)} aria-label={selected > 0 ? `Previous stage: ${journey[selected - 1].title}` : 'Previous stage'}><span aria-hidden="true">←</span>Previous</button><span>{number(selected)} / 06</span><button type="button" disabled={selected === journey.length - 1} onClick={() => select(selected + 1)} aria-label={selected < journey.length - 1 ? `Next stage: ${journey[selected + 1].title}` : 'Next stage'}>Next<span aria-hidden="true">→</span></button></div>
-        </div>
-      </div><p className="visually-hidden" role="status">Viewing stage {selected + 1} of {journey.length}: {step.title}</p>
+    <section className="prc-journey content-width" id="project-journey" aria-labelledby="process-journey-title"><div className="prc-journey-heading"><h2 id="process-journey-title">From brief <em>to production</em></h2><p>Read the work and your checkpoint<br className="prc-desktop-break" /> at each stage.</p></div>
+      <nav className={`prc-tabs ${styles.navigation}`} aria-label="Project stages">{visibleStages.map((stage, index) => <a key={stage.id} href={`#${stage.id}`}><span className="prc-stage-marker">{number(index)}</span><span className="prc-tab-name">{stage.title}<span aria-hidden="true"> →</span></span></a>)}</nav>
+      <ol className={styles.timeline} role="list" aria-label="Six-step project timeline">{visibleStages.map((step, index) => <li className={styles.stage} id={step.id} key={step.id} data-stage={step.id}>
+        <article className="prc-stage-panel" aria-labelledby={`${step.id}-title`}>
+          <figure className="prc-stage-image"><img src={step.image.src} srcSet={`${step.image.small} 600w, ${step.image.src} 900w`} sizes="(max-width: 800px) 90vw, 40vw" alt={step.image.alt} width="900" height="900" decoding="async" loading={index === 0 ? 'eager' : 'lazy'} /><figcaption><span>{number(index)} / {step.title}</span><span>AI-GENERATED CONCEPT</span></figcaption></figure>
+          <div className="prc-stage-copy"><span className="kicker">{number(index)} / {step.label}</span><h3 id={`${step.id}-title`}>{step.title}</h3><p className="prc-stage-description">{step.text}</p><dl className="prc-checkpoints"><div className="prc-output"><dt>WHAT TO EXPECT</dt><dd>{step.output}</dd></div><div className="prc-approval"><dt>YOUR CHECKPOINT</dt><dd>{step.approval}</dd></div></dl><Link className="prc-text-link" to={`/contact?question=${encodeURIComponent(`I'd like to discuss the ${step.title} stage of a project.`)}`}>Ask about this stage<span aria-hidden="true">→</span></Link></div>
+        </article>
+      </li>)}</ol>
     </section>
 
-    <section className="prc-planning content-width" aria-labelledby="process-planning-title"><div className="prc-planning-intro"><span className="kicker">BEFORE YOU BEGIN</span><h2 id="process-planning-title">Agree the details.<br /><em>Shape the brief.</em></h2><p>Every project starts from a different place. Discuss the scope, costs, order quantities, and schedule with Babylon before committing.</p></div><dl>{planning.map(([title, text], index) => <div key={title}><dt><span aria-hidden="true">{number(index)}</span>{title}</dt><dd>{text}</dd></div>)}</dl></section>
+    <section className="prc-planning content-width" aria-labelledby="process-planning-title"><div className="prc-planning-intro"><span className="kicker">BEFORE YOU BEGIN</span><h2 id="process-planning-title">Prepare your<br /><em>product brief</em></h2><p>Your brief is the reference for the product and project requirements.</p></div><dl>{planning.map(([title, text], index) => <div key={title}><dt><span aria-hidden="true">{number(index)}</span>{title}</dt><dd>{text}</dd></div>)}</dl></section>
 
-    <section className="prc-reorder content-width" aria-labelledby="process-reorder-title"><Label number="07">READY FOR YOUR NEXT BATCH?</Label><div className="prc-reorder-grid"><h2 id="process-reorder-title">Keep the learning.<br /><em>Plan the reorder.</em></h2><div><p>Reference the approved product specification and prior lot. Discuss any changes to the formula, packaging, quantities, or markets before a new order.</p><p>Agree on reorder terms and the review of requested changes with Babylon.</p><Link className="prc-text-link" to={`/contact?question=${encodeURIComponent("I'd like to discuss a reorder and any changes to a previous product specification.")}`}>Discuss a reorder<span aria-hidden="true">↗</span></Link></div></div></section>
+    <section className="prc-reorder content-width" aria-labelledby="process-reorder-title"><Label number="07">READY FOR YOUR NEXT BATCH?</Label><div className="prc-reorder-grid"><h2 id="process-reorder-title">Start with the<br /><em>existing specification</em></h2><div><p>Identify the previous specification and any changes to the formula, packaging or target market.</p><p>Use the contact form to send a reorder inquiry with those details.</p><Link className="prc-text-link" to={`/contact?question=${encodeURIComponent("I'd like to discuss a reorder and any changes to a previous product specification.")}`}>Send a reorder question<span aria-hidden="true">→</span></Link></div></div></section>
     <PageReview page="process" />
   </div>;
 }

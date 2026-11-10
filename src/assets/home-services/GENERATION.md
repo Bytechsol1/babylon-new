@@ -1,0 +1,41 @@
+# Home and Services image provenance
+
+Generated on 10 November 2026 with the built-in image_gen tool. These are AI-generated conceptual illustrations, not photographs of Babylon equipment, facilities, staff, customer products or actual software. They do not verify formats, testing inclusions, shipping arrangements or production settings.
+
+The original PNGs are kept locally under ignored .sites/home-services-originals/. Production assets are responsive WebP copies in this directory.
+
+## manufacturing-filling
+
+Use case: photorealistic-natural. Asset type: AI-generated conceptual website illustration for Babylon cosmetics manufacturing, not a photograph of any real company's facility. Create a single premium editorial photograph-style image, landscape 3:2, warm ivory surfaces, deep navy details, restrained antique-gold reflections, realistic tactile glass and brushed metal, soft natural window light. Elegant restrained composition with no decorative flowers. No logos, brands, text, letters, labels, numbers, customer products, identifiable faces, certificates, proprietary formulas, machine settings or readable screens. No collage or website UI. Subject: close-up of a generic cosmetic filling process: one brushed stainless filling nozzle dispensing a little golden cosmetic liquid into an anonymous clear glass vial on a neat small conveyor, a few blank unbranded vials softly receding. Three-quarter eye-level crop, controlled shallow depth of field, navy rear panel, warm ivory foreground. Focus on the single nozzle and vial, no giant factory hall, no exaggerated production scale. Compose centered so the image works cropped as both a wide banner and a card thumbnail.
+
+Files: manufacturing-filling.webp and manufacturing-filling-small.webp.
+
+## formulation-development
+
+Use case: photorealistic-natural. Asset type: AI-generated conceptual website illustration for Babylon cosmetics manufacturing, not a photograph of any real company's facility. Create a single premium editorial photograph-style image, landscape 3:2, warm ivory surfaces, deep navy details, restrained antique-gold reflections, realistic tactile glass and brushed metal, soft natural window light. Elegant restrained composition with no decorative flowers. No logos, brands, text, letters, labels, numbers, customer products, identifiable faces, certificates, proprietary formulas, machine settings or readable screens. No collage or website UI. Subject: a carefully staged cosmetic formulation bench, close-up of anonymous white-gloved hands using a clear glass pipette over a small unbranded beaker, with one cream sample on a glass dish and a few simple clear vessels. No formula sheet or measurement markings. Show the action and believable liquid/glass detail; warm ivory laboratory worktop, a small navy backdrop accent. Frame hands only, no person or face, centered subject suitable for landscape card crop.
+
+Files: formulation-development.webp and formulation-development-small.webp.
+
+## co-development-review
+
+Use case: photorealistic-natural. Asset type: AI-generated conceptual website illustration for Babylon cosmetics manufacturing, not a photograph of any real company's facility. Create a single premium editorial photograph-style image, landscape 3:2, warm ivory surfaces, deep navy details, restrained antique-gold reflections, realistic tactile glass and brushed metal, soft natural window light. Elegant restrained composition with no decorative flowers. No logos, brands, text, letters, labels, numbers, customer products, identifiable faces, certificates, proprietary formulas, machine settings or readable screens. No collage or website UI. Subject: two collaborators' anonymous hands reviewing cosmetic textures together at an ivory worktop; one pair of white-gloved hands presents a small open unbranded cream sample while another gloved hand indicates two cream/gel swatches on a glass palette. A closed navy notebook and a brass pen to one side, no pages with writing. Collaborative sample evaluation, intimate close crop rather than people portrait; physically plausible anatomy and hands. Center the shared sample and texture palette, plenty of clean margins for landscape card crop.
+
+Files: co-development-review.webp and co-development-review-small.webp.
+
+## production-technology
+
+Use case: photorealistic-natural. Asset type: AI-generated conceptual illustration for Babylon cosmetics website; an invented scene, not documentary evidence of any actual facility, equipment, service scope or staff. Single premium editorial photograph-style image, landscape 3:2, warm ivory background, deep navy accents, soft antique-gold reflections, high-end tactile surfaces, soft window light. No logos, text, letters, numbers, labels, brand names, badges, certificates, customers, formulas, ingredient percentages, production settings or readable interface data. No collage, no infographic, no website UI. Subject: intimate close view of a conceptual smart cosmetics work cell on an ivory workbench. A small believable brushed-metal robotic gripper holds one anonymous glass vial near a compact inspection camera with a dark circular lens. A navy laptop behind shows only a simple pale abstract 3D outline of that robot, with no controls or text, evoking simulation. One modest work cell, no giant factory or capacity implications. Center robot, camera and vial; sparse composition, mechanical realism, refined warm lighting. The invented monitor diagram is purely illustrative, not real software or production records.
+
+Files: production-technology.webp and production-technology-small.webp.
+
+## quality-sample-review
+
+Use case: photorealistic-natural. Asset type: AI-generated conceptual illustration for Babylon cosmetics website; an invented scene, not documentary evidence of any actual facility, equipment, service scope or staff. Single premium editorial photograph-style image, landscape 3:2, warm ivory background, deep navy accents, soft antique-gold reflections, high-end tactile surfaces, soft window light. No logos, text, letters, numbers, labels, brand names, badges, certificates, customers, formulas, ingredient percentages, production settings or readable interface data. No collage, no infographic, no website UI. Subject: close-up of an anonymous white-gloved hand lifting a clear glass slide with a thin cosmetic cream smear toward soft side light, as another gloved hand rests near two small plain sample jars and a steel spatula on an ivory laboratory work surface. A closed navy sample notebook nearby, no writing or measuring marks. The image should clearly convey careful sample observation and quality review rather than formulation or people portrait. Honest optical reflections, natural glove creases, physically plausible hands; centered sample and glass, suitable for broad landscape crop.
+
+Files: quality-sample-review.webp and quality-sample-review-small.webp.
+
+## documentation-fulfillment
+
+Use case: photorealistic-natural. Asset type: AI-generated conceptual illustration for Babylon cosmetics website; an invented scene, not documentary evidence of any actual facility, equipment, service scope or staff. Single premium editorial photograph-style image, landscape 3:2, warm ivory background, deep navy accents, soft antique-gold reflections, high-end tactile surfaces, soft window light. No logos, text, letters, numbers, labels, brand names, badges, certificates, customers, formulas, ingredient percentages, production settings or readable interface data. No collage, no infographic, no website UI. Subject: restrained still life suggesting project documentation and fulfillment in a cosmetics setting: a closed navy folder with a blank ivory sheet partly tucked beneath it, one unmarked closed cream-colored shipping carton, two completely plain anonymous cosmetic sample vessels and a brass paper clip on an ivory tabletop. No shipping labels, addresses, seals, forms, stamps or legible papers. A small generic parcel only, no warehouse, no shipping route or direct-to-consumer promise. Carefully balanced centered composition, top-front three-quarter view, refined tactile paper, glass and carton textures.
+
+Files: documentation-fulfillment.webp and documentation-fulfillment-small.webp.

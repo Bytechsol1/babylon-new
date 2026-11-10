@@ -9,7 +9,7 @@ const unavailable = 'The FAQ service could not be reached. Please try again or c
 const randomId = () => Array.from(crypto.getRandomValues(new Uint8Array(16)), value => value.toString(16).padStart(2, '0')).join('');
 
 function Handoff({ question, close }) {
-  return <div className="assistant-message-handoff"><Link to={`/contact?question=${encodeURIComponent(question)}`} onClick={close}>Send this question to Babylon ↗</Link><a href={`mailto:${company.email}?subject=${encodeURIComponent('Babylon project question')}&body=${encodeURIComponent(question)}`}>Email Babylon ↗</a></div>;
+  return <div className="assistant-message-handoff"><Link to={`/contact?question=${encodeURIComponent(question)}`} onClick={close}>Send this question to Babylon →</Link><a href={`mailto:${company.email}?subject=${encodeURIComponent('Babylon project question')}&body=${encodeURIComponent(question)}`}>Email Babylon ↗</a></div>;
 }
 
 export default function FAQAssistant() {
@@ -46,7 +46,6 @@ export default function FAQAssistant() {
   }, [open]);
 
   useEffect(() => {
-    if (!open) return;
     const controller = new AbortController();
     let timedOut = false;
     const timer = setTimeout(() => { timedOut = true; controller.abort(); }, 10000);
@@ -65,7 +64,7 @@ export default function FAQAssistant() {
       .catch(() => { if (!controller.signal.aborted || timedOut) setService({ mode: 'unavailable', questions: [] }); })
       .finally(() => clearTimeout(timer));
     return () => { clearTimeout(timer); controller.abort(); };
-  }, [open, checkAttempt]);
+  }, [checkAttempt]);
 
   useEffect(() => {
     if (!limitedUntil) return;
@@ -153,6 +152,9 @@ export default function FAQAssistant() {
     unavailable: 'The FAQ service is unavailable right now. You can still contact Babylon directly.',
   }[service.mode];
 
+  // A pending or disconnected assistant has no public launcher. If a service
+  // failure happens during an open conversation, retain its error and handoff.
+  if (!open && service.mode !== 'ready') return null;
   return <div className="assistant-shell">
     {open && <section id="faq-assistant" className="assistant-panel" role="dialog" aria-modal="false" aria-labelledby="assistant-heading">
       <div className="assistant-heading"><div><span className="kicker">BABYLON / FAQ ASSISTANT</span><h2 id="assistant-heading">A little guidance.</h2></div><button type="button" aria-label="Close FAQ assistant" onClick={closePanel}>×</button></div>
@@ -164,7 +166,7 @@ export default function FAQAssistant() {
       </div>
       {sending && <p className="assistant-loading" role="status">Checking the approved FAQ…</p>}
       {service.mode === 'ready' && messages.length === 0 && <div className="assistant-suggestions" aria-label="Approved FAQ questions">{service.questions.slice(0, 3).map(item => <button type="button" key={item.id} disabled={sending || rateLimited} onClick={() => void submitQuestion(item.question, item.id)}>{item.question}<span aria-hidden="true">↗</span></button>)}</div>}
-      <div className="assistant-actions"><Link to="/faq" onClick={closePanel}>Browse FAQ ↗</Link><Link to="/contact" onClick={closePanel}>Human handoff ↗</Link><a href={`mailto:${company.email}`}>Email Babylon ↗</a></div>
+      <div className="assistant-actions"><Link to="/faq" onClick={closePanel}>Browse FAQ →</Link><Link to="/contact" onClick={closePanel}>Human handoff →</Link><a href={`mailto:${company.email}`}>Email Babylon ↗</a></div>
       <form onSubmit={ask} noValidate><label htmlFor="assistant-question">Your question</label><div className="assistant-input-row"><input id="assistant-question" ref={input} value={question} onChange={event => { setQuestion(event.target.value); setInputError(''); }} maxLength={FAQ_MAX_LENGTH} autoComplete="off" aria-invalid={inputError ? 'true' : undefined} aria-describedby={`assistant-message-limit${inputError ? ' assistant-input-notice' : ''}`} /><button type="submit" disabled={sending || rateLimited || service.mode === 'checking'} aria-label="Ask FAQ assistant">↑</button></div><div className="assistant-form-footer"><span id="assistant-message-limit">{question.length}/{FAQ_MAX_LENGTH} characters</span><span>History clears on reload</span></div>{inputError && <p id="assistant-input-notice" className="assistant-notice" role="alert">{inputError}</p>}{rateLimited && <p className="assistant-notice" role="status">Question limit reached. Please contact Babylon or try again later.</p>}</form>
     </section>}
     <button ref={toggle} type="button" className="assistant-toggle" aria-label={open ? 'Close FAQ assistant' : 'Open FAQ assistant'} title={open ? 'Close FAQ assistant' : 'Open FAQ assistant'} aria-expanded={open} aria-controls="faq-assistant" onClick={() => setOpen(previous => !previous)}>{open ? <svg className="assistant-launcher-close" viewBox="0 0 48 48" fill="none" aria-hidden="true" focusable="false"><path d="m14 14 20 20m0-20L14 34" /></svg> : <img className="assistant-launcher-mascot" src={assistantMascot} alt="" aria-hidden="true" width="192" height="192" draggable="false" />}</button>

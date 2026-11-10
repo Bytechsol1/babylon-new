@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createFAQHandler } from '../api/faq.js';
 import { faq } from '../src/content.js';
-import { faqConfigured } from '../server/faq.js';
+import { faqConfigured, approvedEntries } from '../server/faq.js';
 
 // Test fixtures only. No sample answer is added to the site's approved knowledge.
 const approved = { id: 'approved-test', question: 'What is the approved test question?', answer: 'This is the exact reviewer-approved test answer.', status: 'approved', reviewedAt: '2026-11-04', source: 'Test fixture' };
@@ -29,10 +29,13 @@ function setup({ configuration = env, knowledge = entries, result = 1, healthy =
   return { handler, calls, run };
 }
 
-test('real knowledge remains pending and readiness does not fabricate approval', async () => {
-  const { run, calls } = setup({ knowledge: faq });
+test('source-backed knowledge excludes unresolved claims and still needs a configured backend', async () => {
+  const publicEntries = approvedEntries(faq);
+  assert.equal(publicEntries.length, 6);
+  assert.ok(!publicEntries.some(item => ['moq', 'timing', 'formats', 'quality', 'ownership', 'certification', 'reorders'].includes(item.id)));
+  const { run, calls } = setup({ knowledge: faq, configuration: {} });
   const status = await run(request(undefined, { method: 'GET' }));
-  assert.equal(status.statusCode, 200); assert.equal(status.body.mode, 'prototype'); assert.equal(status.body.approvedCount, 0); assert.deepEqual(status.body.questions, []);
+  assert.equal(status.statusCode, 200); assert.equal(status.body.mode, 'prototype'); assert.equal(status.body.approvedCount, 6); assert.deepEqual(status.body.questions, []);
   const post = await run(request()); assert.equal(post.statusCode, 503); assert.equal(post.body.mode, 'prototype'); assert.equal(calls.length, 0);
 });
 
@@ -143,7 +146,7 @@ test('unknown AI results hand off; invalid, refused and failed results never rea
 });
 
 test('AI is never called before approval, validation or rate limiting, or for exact/forged/ambiguous selections', async () => {
-  for (const settings of [{ knowledge: faq }, { limited: true }]) {
+  for (const settings of [{ knowledge: faq.filter(item => item.status !== 'approved') }, { limited: true }]) {
     const { ask, calls } = aiSetup(settings); await ask(); assert.ok(calls.every(call => call.url === env.UPSTASH_REDIS_REST_URL));
   }
   for (const overrides of [{ message: approved.question }, { questionId: 'forged-id' }, { message: 'x'.repeat(501) }]) {

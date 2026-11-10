@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import Header from './components/Header.jsx';
 import { Router, useRouter } from './router.jsx';
-import { navigation } from './content.js';
+import { updatePageSEO } from './seo.js';
 import { Home, Services, Capabilities, Products, Quality, Process, About, FAQ, Contact, NotFound, Footer } from './components/SitePages.jsx';
 import FAQAssistant from './components/FAQAssistant.jsx';
 
@@ -10,8 +10,7 @@ function Website() {
   const { location } = useRouter();
   const Page = pages[location] || NotFound;
   useEffect(() => {
-    const title = navigation.find(([path]) => path === location)?.[1] || 'Page not found';
-    document.title = `${title === 'Home' ? 'Cosmetics, engineered.' : title} | Babylon`;
+    updatePageSEO(location);
   }, [location]);
   return <>
     <a className="skip-link" href="#main-content">Skip to content</a>

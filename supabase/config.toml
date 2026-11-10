@@ -1,0 +1,6 @@
+# Opaque publishable keys are not JWTs. The function enforces a timestamped HMAC
+# from the same-origin server proxy; the database RPC applies durable hashed IP/session limits.
+project_id = "babylon-contact"
+[functions.inquiry]
+verify_jwt = false
+entrypoint = "./functions/inquiry/index.ts"

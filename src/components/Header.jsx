@@ -7,18 +7,6 @@ const links = [
   ...navigation.filter(([path]) => path === '/about'),
   ...navigation.filter(([path]) => !['/', '/contact', '/about'].includes(path)),
 ];
-const navSymbols = {
-  '/about': <><path d="M16 3C13 9 9 13 9 19a7 7 0 0 0 14 0c0-6-4-10-7-16Z" /><path d="M12 19a4 4 0 0 0 4 4" /></>,
-  '/services': <><ellipse cx="16" cy="7" rx="10" ry="3" /><path d="M6 7v4c0 1.7 4.5 3 10 3s10-1.3 10-3V7M6 12v11c0 2 4.5 3.5 10 3.5S26 25 26 23V12M10 17v5M26 18h3v6c0 1.8-5.8 3.5-13 3.5" /></>,
-  '/capabilities': <><path d="M12 3h8M14 3v9L7 25c-.8 1.5 0 3 1.8 3h14.4c1.8 0 2.6-1.5 1.8-3l-7-13V3M10 21c4-3 8 3 12 0" /><circle cx="14" cy="17" r=".8" /><circle cx="18" cy="24" r=".8" /></>,
-  '/products': <><path d="M4 13h24v15H4zM3 9h26v4H3zM8 9c0-4 6-3 8-6 1 3 8 2 8 6M8 17h16" /></>,
-  '/quality': <><path d="m16 3 3.3 2.4 4.1-.1 1.4 3.9 3.4 2.3-1 4 1 4-3.4 2.3-1.4 3.9-4.1-.1L16 28l-3.3-2.4-4.1.1-1.4-3.9L3.8 19.5l1-4-1-4 3.4-2.3 1.4-3.9 4.1.1Z" /><path d="m11 15.5 3.5 3.5 7-7" /></>,
-  '/process': <><circle cx="6" cy="16" r="4.5" /><circle cx="16" cy="16" r="4.5" /><circle cx="26" cy="16" r="4.5" /><path d="M10.5 16h1M20.5 16h1" /></>,
-  '/faq': <><path d="M16 8C12 5 7 5 3 7v21c4-2 9-2 13 1 4-3 9-3 13-1V7c-4-2-9-2-13 1ZM16 8v21" /></>,
-};
-function NavIcon({ path }) {
-  return <svg className="nav-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">{navSymbols[path]}</svg>;
-}
 function focusNavigation(element) {
   (element?.querySelector('[aria-current="page"]') || element?.querySelector('a'))?.focus();
 }
@@ -72,9 +60,9 @@ export default function Header() {
     </button>
     <nav ref={nav} id="main-navigation" className={menuOpen ? 'open' : ''} aria-label="Main navigation">
 
-      <div className="nav-panel-heading" aria-hidden="true"><span>EXPLORE BABYLON</span><span>YOUR VISION. OUR ELEMENT.</span></div>
+      <div className="nav-panel-heading" aria-hidden="true"><span>MENU</span><span>SAN JOSE · SINCE 2016</span></div>
       <div className="nav-links">{links.map(([path, label]) => <Link key={path} to={path} aria-current={location === path ? 'page' : undefined} onClick={() => setMenuOpen(false)}>
-        <NavIcon path={path} /><span className="nav-label">{label}</span><span className="nav-link-indicator" aria-hidden="true">↗</span>
+        <span className="nav-label">{label}</span><span className="nav-link-indicator" aria-hidden="true">→</span>
       </Link>)}</div>
 
     </nav>

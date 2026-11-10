@@ -1,0 +1,68 @@
+/* Readability corrections only: keep the approved palette, Manrope and layouts. */
+#root { --body-size: 18px; }
+#root :where(main, footer) :where(p, li, dd, td) { font-size: 18px; line-height: 1.7; }
+#root :where(main, footer) :where(p, li, dd, td, a, h1, h2, h3) { overflow-wrap: break-word; }
+#root :where(.kicker, .section-label, .section-label > span, .eyebrow, .closing-eyebrow, .closing-kicker, .footer-invitation-label, .footer-link-group > span, .process-tagline, .about-chapter-label, .about-chapter-detail) { font-size: 12px; line-height: 1.6; letter-spacing: 1.3px; }
+#root main :where(dt) { font-size: 12px; line-height: 1.6; }
+#root main :where(figcaption) { font-size: 12px; line-height: 1.6; letter-spacing: .65px; flex-wrap: wrap; }
+#root main :where(figcaption span) { white-space: normal; }
+#root .section-label { flex-wrap: wrap; gap: 12px 22px; }
+#root .section-label > span { min-width: 0; }
+#root .section-label > i { min-width: 25px; }
+#root :where(.arrow-link, .cap-text-link, .prod-text-link, .prc-text-link, .qlt-text-link, .partnership-cta, .partnership-more, .prod-primary-cta, .prod-service-link, .button) { font-size: 16px; line-height: 1.5; }
+#root :where(.faq-list summary, .faq-filters button, .partnership-tab-copy small, .cap-tab-name, .prc-tab-name, .capability-mini li, .process-strip button, .footer-link-group a, .footer-location address) { font-size: 17px; line-height: 1.6; }
+#root :where(.footer-bottom, .about-hero-address) { font-size: 12px; line-height: 1.7; }
+#root .about-hero-heading > p { font-size: clamp(18px, 1.6vw, 23px); }
+#root .about-hero-story .about-story-copy > p { font-size: clamp(21px, 2vw, 29px); line-height: 1.4; }
+#root .about-hero-mission .about-mission-statement { font-size: clamp(25px, 2.35vw, 34px); line-height: 1.4; }
+#root .about-company-facts dd { font-size: clamp(29px, 3vw, 42px); line-height: 1.25; }
+#root .hero .eyebrow { white-space: normal; }
+#root .hero .intro { min-width: 0; }
+#root .header nav a { flex-direction: row; gap: 9px; }
+#root .header .nav-link-indicator { display: inline; font-size: 17px; }
+#root .header .nav-panel-heading { font-size: 12px; }
+#root .header .nav-panel-heading > span { font-size: 12px; }
+#root .header nav a::after { left: 8px; }
+#root .process-strip .process-tagline { color: #79591f; }
+#root :where(.cap-study-top, .cap-panel-footer, .qlt-topic-index) { font-size: 12px; line-height: 1.6; }
+/* Keep static poster and important copy present before animation scripts run. */
+#root main :where(h1, .eyebrow, .intro, .hero-actions, .hero-copy, .hero-visual, .copy-footer) { opacity: 1; animation: none; }
+#root .about-chapter.is-active { opacity: 1; transform: none; filter: none; }
+#root .orbit-system, #root .orbit-map, #root .orbit-window { display: none; animation: none; }
+#root .about-film-caption { font-size: 12px; letter-spacing: 1.3px; }
+#root .about-film-caption > span { width: auto; height: auto; background: none; font-size: 20px; }
+#root .partnership-tab-copy > span { font-size: 20px; }
+#root .partnership-tabs button { grid-template-columns: minmax(0,1fr) auto; }
+#root .partnership-tab-copy small { white-space: normal; }
+#root .process-strip li { min-width: 0; }
+#root main table th { overflow-wrap: break-word; }
+#root .faq-list summary { grid-template-columns: minmax(0,1fr) 22px; }
+#root .faq-answer { padding-left: 0; }
+#root .footer-link-group a > span { margin-left: 8px; }
+#root :where(.prod-topic-nav a, .partnership-scope summary) { font-size: 17px; line-height: 1.6; }
+#root .project-form label { font-size: 16px; line-height: 1.6; }
+#root .project-form :is(input:not([type=checkbox]), select, textarea) { font-size: 17px; line-height: 1.5; min-width: 0; }
+#root .project-form :where(.field-help, .form-required-note) { color: #626580; }
+#root .project-form :where(.optional) { font-size: 12px; color: #626580; }
+#root .form-mode strong { font-size: 12px; line-height: 1.6; color: #79591f; }
+#root .about-film-copy { max-width: 640px; }
+#root .about-chapter-description { max-width: 48ch; }
+@media (max-width: 1100px) {
+  #root .footer-invitation-grid { gap: 30px; }
+}
+@media (max-width: 800px) {
+  #root :where(main, footer) :where(p, li, dd, td) { font-size: 17px; }
+  #root .about-hero-story .about-story-copy > p { font-size: 21px; }
+  #root .about-hero-mission .about-mission-statement { font-size: 26px; }
+  #root .section-label > span:last-child { text-align: left; }
+  #root .about-film-copy { width: 90%; max-width: none; }
+  #root .footer-invitation-grid { grid-template-columns: 1fr; }
+  #root .footer-invitation-action { justify-self: start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  #root .frame-hero { height: auto; }
+  #root .frame-hero-stage { position: relative; top: auto; min-height: 650px; }
+  #root .science-scroll { height: auto; }
+  #root .science-overview { position: relative; top: auto; }
+}

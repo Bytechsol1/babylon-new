@@ -1,0 +1,11 @@
+/* The old asset contained its own surrounding artwork and used an offset crop.
+   Fit the new standalone image inside the existing circular frame. */
+.frame > .image {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: 55% 50%;
+}

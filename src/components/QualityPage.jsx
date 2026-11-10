@@ -1,53 +1,45 @@
-import { useState } from 'react';
-import { certification, certificationVisible, qualityChecks } from '../content.js';
+import { certification, certificationVisible } from '../content.js';
+import { qualityReviewRows, qualityRecordTopics } from '../qualityContent.js';
 import { Link } from '../router.jsx';
 import PageReview from './PageReview.jsx';
-import heroImage from '../assets/quality/quality-hero.webp';
-import heroSmall from '../assets/quality/quality-hero-small.webp';
-import samplesImage from '../assets/quality/sample-observation.webp';
-import recordsImage from '../assets/quality/quality-records.webp';
-import qcImage from '../assets/capabilities/quality-control.webp';
-import compatibilityImage from '../assets/products/packaging-markets.webp';
+import { editorialImages } from '../editorialImages.js';
 import '../quality.css';
+import styles from './QualityTable.module.css';
 
+const heroImage = editorialImages['quality-hero'];
+const recordsImage = editorialImages['quality-records'];
 const number = index => String(index + 1).padStart(2, '0');
-const testingImages = [
-  { src: qcImage, alt: 'Illustrative quality review with gloved hands transferring a cosmetic sample into a glass dish.' },
-  { src: samplesImage, alt: 'Illustrative observation study with unmarked cosmetic sample jars, a glass slide and a stainless steel spatula.' },
-  { src: compatibilityImage, alt: 'Illustrative packaging study with a glass jar, dropper and pump bottle for discussing formula and packaging compatibility.' },
-  { src: heroImage, alt: 'Illustrative laboratory sample handling with gloved hands observing an unmarked cosmetic sample vial.' },
-];
-function Label({ number: index, children, aside = 'YOUR VISION. OUR ELEMENT.' }) {
-  return <div className="section-label"><span>{index} / {children}</span><i aria-hidden="true" /><span>{aside}</span></div>;
+function Label({ number: index, children, aside = '' }) {
+  return <div className="section-label"><span>{children}</span><i aria-hidden="true" /><span>{aside}</span></div>;
 }
 
 export default function QualityPage() {
   const showCertificate = certificationVisible();
-  const [activeTest, setActiveTest] = useState(0);
-  const testingImage = testingImages[activeTest];
   return <div className="qlt-page">
     <section className="qlt-hero content-width" aria-labelledby="quality-page-title">
       <Label number="04">QUALITY</Label>
-      <div className="qlt-hero-grid"><div className="qlt-hero-copy"><span className="kicker">DEFINED. DOCUMENTED. REVIEWED.</span><h1 id="quality-page-title">Defined with care.<em>Checked with purpose.</em></h1><p className="qlt-hero-lead">A quality plan starts with agreed requirements.</p><p>Explore the testing and documentation topics to discuss for your product. The relevant methods, criteria, and scope are agreed for the project.</p><a className="qlt-text-link" href="#quality-topics">Explore the quality topics<span aria-hidden="true">↓</span></a></div>
-        <figure className="qlt-hero-image"><img src={heroImage} srcSet={`${heroSmall} 600w, ${heroImage} 1000w`} sizes="(max-width: 700px) 88vw, (max-width: 1511px) 44vw, 620px" alt="Illustrative study of gloved hands observing a cosmetic sample vial beside a cream jar and sample dish." width="1000" height="1000" fetchPriority="high" /><figcaption><span>CARE IN THE DETAILS</span><span>ILLUSTRATIVE LAB IMAGERY</span></figcaption></figure>
+      <div className="qlt-hero-grid"><div className="qlt-hero-copy"><span className="kicker">COSMETICS GMP AND PRODUCTION RECORDS</span><h1 id="quality-page-title">Quality checks<em>and traceability</em></h1><p className="qlt-hero-lead">Quality methods assess products against their specifications.</p><a className="qlt-text-link" href="#quality-topics">See the quality methods<span aria-hidden="true">→</span></a></div>
+        <figure className="qlt-hero-image"><img src={heroImage.src} srcSet={`${heroImage.small} 600w, ${heroImage.src} 1000w`} sizes="(max-width: 700px) 88vw, (max-width: 1511px) 44vw, 620px" alt={heroImage.alt} width="1000" height="1000" fetchPriority="high" /><figcaption className={styles.imageCaption}><span>SAMPLE-HANDLING ILLUSTRATION</span><span>AI-GENERATED CONCEPT</span></figcaption></figure>
       </div>
     </section>
 
-    <section className={`qlt-standard content-width${showCertificate ? '' : ' qlt-standard-neutral'}`} aria-labelledby="quality-standard-title"><div className="qlt-standard-title"><span className="kicker">QUALITY INFORMATION</span><h2 id="quality-standard-title">A standard.<br /><em>A clear scope.</em></h2></div>
-      {showCertificate && <div className="qlt-certification"><span className="kicker">COSMETICS · GOOD MANUFACTURING PRACTICES</span><strong>{certification.standard}</strong>{certification.scope && <p>Scope: {certification.scope}</p>}{certification.confirmedExpiry && <p>Expiry: {certification.confirmedExpiry}</p>}</div>}
-      <div className="qlt-standard-copy"><p>Discuss current quality documentation and project requirements with Babylon.</p><Link className="qlt-text-link" to="/contact">Discuss your quality requirements<span aria-hidden="true">↗</span></Link></div>
+    <section className={`qlt-standard content-width${showCertificate ? '' : ' qlt-standard-neutral'}`} aria-labelledby="quality-standard-title"><div className="qlt-standard-title"><span className="kicker">QUALITY INFORMATION</span><h2 id="quality-standard-title">Cosmetics GMP<br /><em>certification</em></h2></div>
+      {showCertificate && <div className="qlt-certification"><span className="kicker">COSMETICS · GOOD MANUFACTURING PRACTICES</span><strong>{certification.standard}</strong><p>We hold {certification.standard} certification through {certification.heldThroughYear}.</p></div>}
+      <div className="qlt-standard-copy"><p>For certification or project-specific quality questions, contact us.</p><Link className="qlt-text-link" to="/contact">Send a quality question<span aria-hidden="true">→</span></Link></div>
     </section>
 
-    <section className="qlt-testing content-width" id="quality-topics" aria-labelledby="quality-testing-title"><Label number="01" aside="SAMPLES. SPECIFICATIONS. REVIEW.">THE TESTING CONVERSATION</Label><div className="qlt-section-heading"><h2 id="quality-testing-title">The checks.<br /><em>The questions to agree.</em></h2><span className="qlt-section-index" aria-hidden="true">01 — 04</span></div>
-      <div className="qlt-scope-note"><span className="kicker">PROJECT-SPECIFIC SCOPE</span><p>The methods below explain what each topic involves. They do not imply that a particular test or document is included in every project.</p></div>
-      <div className="qlt-testing-grid"><figure className="qlt-sample-image" data-topic={qualityChecks[activeTest][0]}><img src={testingImage.src} alt={testingImage.alt} width="900" height="900" loading="lazy" decoding="async" /><figcaption><span>{qualityChecks[activeTest][0]}</span><span>ILLUSTRATIVE SAMPLE STUDY</span></figcaption></figure>
-        <div className="qlt-accordion">{qualityChecks.slice(0, 4).map(([title, description], index) => <details className="qlt-test-topic" name="babylon-quality-testing" key={title} open={index === 0} onToggle={event => { if (event.currentTarget.open) setActiveTest(index); }}><summary><span className="qlt-topic-index" aria-hidden="true">{number(index)}</span><h3>{title}</h3><span className="qlt-topic-toggle" aria-hidden="true" /></summary><div className="qlt-topic-body"><p>{description}</p></div></details>)}</div>
-      </div>
+    <section className="qlt-testing content-width" id="quality-topics" aria-labelledby="quality-testing-title"><Label number="01" aside="SPECIFICATIONS AND REVIEW">TESTING OVERVIEW</Label><div className="qlt-section-heading"><h2 id="quality-testing-title">Quality methods<br /><em>and project scope</em></h2></div>
+      <div className="qlt-scope-note"><span className="kicker">PROJECT-SPECIFIC SCOPE</span><p id="quality-testing-scope">This overview describes QC specification review. It does not establish a testing location or confirm that a test is included in a project.</p></div>
+      <table className={styles.table} role="table" aria-describedby="quality-testing-scope">
+        <caption className="visually-hidden">Quality control method, location and project inclusion</caption>
+        <thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">Test</th><th scope="col" role="columnheader">What it checks</th><th scope="col" role="columnheader">Where it is performed</th><th scope="col" role="columnheader">Whether it is included in a project</th></tr></thead>
+        <tbody role="rowgroup">{qualityReviewRows.map(row => <tr role="row" key={row.test}><th scope="row" role="rowheader"><span className={styles.cellLabel} aria-hidden="true">Test</span>{row.test}</th><td role="cell"><span className={styles.cellLabel} aria-hidden="true">What it checks</span>{row.checks}</td><td role="cell"><span className={styles.cellLabel} aria-hidden="true">Where it is performed</span>{row.location || 'Not confirmed'}</td><td role="cell"><span className={styles.cellLabel} aria-hidden="true">Whether it is included in a project</span>{row.included || 'Not confirmed'}</td></tr>)}</tbody>
+      </table>
     </section>
 
-    <section className="qlt-records content-width" aria-labelledby="quality-records-title"><Label number="02" aside="A REFERENCE FOR THE PROJECT">DOCUMENTATION &amp; TRACEABILITY</Label><div className="qlt-records-grid"><div><span className="kicker">THE DETAILS THAT CONNECT</span><h2 id="quality-records-title">The record.<br /><em>The reference.</em></h2><div className="qlt-record-entries">{qualityChecks.slice(4).map(([title, description], index) => <article key={title}><span className="qlt-topic-index" aria-hidden="true">{number(index + 4)}</span><div><h3>{title}</h3><p>{description}</p></div></article>)}</div></div><figure className="qlt-record-image"><img src={recordsImage} alt="Illustrative documentation study with blank review paper, unmarked cosmetic samples and empty reference tags." width="900" height="900" loading="lazy" decoding="async" /><figcaption><span>DOCUMENT STUDY</span><span>ILLUSTRATIVE CONCEPT IMAGERY</span></figcaption></figure></div></section>
+    <section className="qlt-records content-width" aria-labelledby="quality-records-title"><Label number="02" aside="A REFERENCE FOR THE PROJECT">DOCUMENTATION &amp; TRACEABILITY</Label><div className="qlt-records-grid"><div><span className="kicker">THE DETAILS THAT CONNECT</span><h2 id="quality-records-title">Batch records<br /><em>and traceability</em></h2><div className="qlt-record-entries">{qualityRecordTopics.map((topic, index) => <article key={topic.title}><span className="qlt-topic-index" aria-hidden="true">{number(index)}</span><div><h3>{topic.title}</h3><p>{topic.text}</p></div></article>)}</div></div><figure className="qlt-record-image"><img src={recordsImage.src} srcSet={`${recordsImage.small} 600w, ${recordsImage.src} 900w`} sizes="(max-width: 800px) 90vw, 40vw" alt={recordsImage.alt} width="900" height="900" loading="lazy" decoding="async" /><figcaption className={styles.imageCaption}><span>TRACEABILITY CONCEPT</span><span>AI-GENERATED CONCEPT</span></figcaption></figure></div></section>
 
-    <div className="qlt-next content-width"><Link className="qlt-process-link" to="/process" aria-labelledby="quality-process-title"><div><span className="kicker">THE NEXT CHAPTER / PROCESS</span><h2 id="quality-process-title">See where testing fits<br /><em>in your project.</em></h2></div><span className="qlt-process-arrow" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M9 39 39 9M9 9h30v30" /></svg></span></Link></div>
+    <div className="qlt-next content-width"><Link className="qlt-process-link" to="/process" aria-labelledby="quality-process-title"><div><span className="kicker">THE NEXT CHAPTER / PROCESS</span><h2 id="quality-process-title">From first email<br /><em>to first shipment</em></h2></div><span className="qlt-process-arrow" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M7 24h34M29 12l12 12-12 12" /></svg></span></Link></div>
     <PageReview page="quality" />
   </div>;
 }

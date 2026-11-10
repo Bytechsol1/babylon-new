@@ -1,0 +1,14 @@
+/* Reuses the approved Process panels, markers and checkpoint cards. */
+.timeline { list-style: none; margin: 0; padding: 0; }
+.stage { padding-bottom: 48px; scroll-margin-top: calc(var(--site-header-height, 84px) + 20px); }
+.stage + .stage { padding-top: 48px; border-top: 1px solid var(--prc-rule); }
+.stage:last-child { padding-bottom: 0; }
+.navigation a { position: relative; display: flex; flex-direction: column; align-items: center; gap: 13px; min-width: 0; min-height: 115px; padding: 12px 8px 9px; text-align: center; }
+.navigation a:hover :global(.prc-stage-marker) { border-color: var(--ink); }
+.navigation a:focus-visible { outline: 2px solid #896122; outline-offset: 4px; }
+@media (max-width: 700px) {
+  .navigation a { flex-direction: row; gap: 12px; min-height: 78px; padding: 12px 0; border-bottom: 1px solid var(--prc-rule); text-align: left; }
+  .navigation :global(.prc-tab-name) { min-width: 0; }
+  .stage { padding-bottom: 32px; }
+  .stage + .stage { padding-top: 32px; }
+}

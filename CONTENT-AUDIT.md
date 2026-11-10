@@ -1,5 +1,8 @@
 # Babylon content audit
 
+> Current rewrite: the user-supplied November copy/design brief supersedes the earlier layout and animation notes below. The active pages now use visible comparisons, method/test tables, a timeline and six approved-fact FAQ answers. Generated facility visuals, orbit/film sections and repeated slogans are not rendered. Contact form/API/environment remain unchanged. See [REWRITE-IMPLEMENTATION.md](REWRITE-IMPLEMENTATION.md) for the current source decisions and verification.
+
+
 Reviewed against the supplied client brief and public website on **2 November 2026**. The client brief takes precedence where legacy website claims need fresh approval. This audit records content decisions; it does not approve draft FAQ answers or activate production delivery.
 
 ## Sources
@@ -19,7 +22,7 @@ The public site is reference material. A legacy claim appearing there does not r
 | Cosmetic formulation and manufacturing | Home; Manufacturing | Plain introduction, now made explicit in the home headline and introductory copy. |
 | Founded 2016 | About; client brief | Shared company data used by About and the footer. |
 | 2221 Oakland Rd, San Jose, CA 95131 | Contact; client brief | Shared company data used consistently. |
-| info@babylonllc.com | Contact | Public general-inquiry email link on Contact and in the prototype assistant; not silently assigned as the form recipient. |
+| info@babylonllc.com | Contact; explicit user instruction 2026-11-07 | Public contact address and authorized server-side contact-form recipient. No mailto-based form submission. |
 | Bulk, filling/assembly, and concept-to-product support | Manufacturing | Concise explanations on Services, with the project scope explicitly awaiting confirmation. |
 | Co-development | Manufacturing; client brief | Rewritten around customer input, Babylon’s role, and project steps. |
 | ISO 22716 held through 2027 | Client brief | Text-only display; exact scope/expiry remain unconfirmed. |
@@ -49,7 +52,7 @@ The public site is reference material. A legacy claim appearing there does not r
 
 ## Current operational status
 
-All nine routes are implemented. The contact form has the requested fields and a configurable Vercel backend with validation, honeypot checks, Turnstile verification, durable IP/session limits, and acknowledged email delivery. Missing credentials keep it visibly download-only; mock tests send no email. The public email link supplies a direct human contact option.
+All nine routes are implemented. The contact form has the requested fields and a configurable Vercel backend with validation, honeypot checks, Turnstile verification, durable IP/session limits, and Resend acceptance checks. The authorized recipient is info@babylonllc.com. Missing credentials disable sending with an explicit setup-pending state; local brief download is separate. Provider acceptance is not a claim of inbox delivery. Mock tests send no email.
 
 No approved FAQ answers were supplied. The FAQ is a reviewable draft, and the assistant stays visibly non-live. Its knowledge gate requires an approved, non-empty answer and a valid calendar review date. The guarded server FAQ endpoint is separate from the prototype UI.
 

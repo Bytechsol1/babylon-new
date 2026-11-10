@@ -46,15 +46,15 @@ export const siteReview = {
     ['Reorders', '[confirm with Cody: reorder terms and change-control process]'],
   ] },
   faq: { title: 'FAQ', items: [
-    ['Answer approval', '[confirm with Cody: approved answer, supporting source, and review date for every FAQ entry]'],
+    ['Remaining answers', '[confirm with Cody: product formats, MOQ, lead times, test inclusion, certificate scope/expiry, reorders, ownership and NDA terms; six source-backed company/service answers are published]'],
     ['Assistant activation', '[confirm with Cody: production FAQ backend, human handoff, unanswered-question review workflow, retention, IP/session limits, and message-length limits]'],
   ] },
   contact: { title: 'Contact', items: [
-    ['Recipient', '[confirm with Cody: project inquiry recipient and response expectations]'],
+    ['Response expectations', '[confirm with Cody: response expectations; inquiry recipient info@babylonllc.com is authorized]'],
     ['Quantity options', '[confirm with Cody: first-order estimate ranges as inquiry options rather than MOQs]'],
     ['Production security', '[confirm with Cody: production hostname and Turnstile configuration]'],
     ['Rate limiting', '[confirm with Cody: shared Redis rate-limit configuration and private HMAC secret]'],
-    ['Delivery', '[confirm with Cody: Resend credentials, verified sender, recipient, and genuine delivery verification]'],
+    ['Delivery', '[confirm with Cody: Resend credentials, verified sender/domain, and genuine inbox delivery verification]'],
   ] },
 };
 export const proposedFormats = [

@@ -1,36 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { createFrameSequence } from '../frameSequence.js';
 import '../frame-hero.css';
+import { Link } from '../router.jsx';
 
 const chapters = [
-  {
-    label: 'Our story',
-    title: 'A little curiosity.',
-    emphasis: 'A new kind of beauty.',
-    description: 'Founded in 2016, Babylon works in cosmetic manufacturing. Explore your product idea and the formulation and manufacturing work it may need.',
-    detail: 'EST. 2016 · BUILT ON CURIOSITY',
-  },
-  {
-    label: 'Our mission',
-    title: 'Your vision.',
-    emphasis: 'Thoughtful beginnings.',
-    description: 'Our mission is to support brands in developing cosmetics that reflect their vision, beginning with the product idea and a clear brief.',
-    detail: 'YOUR VISION · A CLEAR STARTING POINT',
-  },
-  {
-    label: 'Our standards',
-    title: 'Care in every detail.',
-    emphasis: 'Science in every drop.',
-    description: 'Define the specifications, review samples, and discuss the testing and documentation relevant to your project. Clear checkpoints give each stage a purpose.',
-    detail: 'BRIEF · SAMPLES · APPROVALS',
-  },
-  {
-    label: 'Your possibilities',
-    title: 'Your next big idea.',
-    emphasis: 'Room to begin.',
-    description: 'Bring an idea, an existing formula, or a product brief. Explore OEM, ODM, and co-development to find a way of working that fits your starting point.',
-    detail: 'OEM · ODM · CO-DEVELOPMENT',
-  },
+  { label: 'Our story', title: 'Making cosmetics', emphasis: 'since 2016.', description: 'We work in cosmetic formulation, manufacturing and filling. We are based in San Jose, California.', detail: 'SAN JOSE · CALIFORNIA' },
 ];
 
 // Push in towards the middle of the footage, then pull back out for the final line-up.
@@ -40,7 +14,6 @@ const zoomAt = progress => 1 + MAX_ZOOM * Math.sin(Math.PI * progress) ** 2;
 export default function Hero() {
   const sectionRef = useRef(null);
   const canvasRef = useRef(null);
-  const [stage, setStage] = useState(0);
   const [loaded, setLoaded] = useState(0);
 
   useEffect(() => {
@@ -53,7 +26,6 @@ export default function Hero() {
         section,
         onProgress(progress) {
           section.style.setProperty('--progress', progress.toFixed(4));
-          setStage(Math.min(chapters.length - 1, Math.floor(progress * chapters.length)));
         },
         onLoad: fraction => setLoaded(Math.round(fraction * 100)),
         zoom: zoomAt,
@@ -64,17 +36,6 @@ export default function Hero() {
     return () => { observer.disconnect(); dispose?.(); };
   }, []);
 
-  function goToChapter(index) {
-    const section = sectionRef.current;
-    const canvas = canvasRef.current;
-    const top = parseFloat(getComputedStyle(canvas.parentElement).top) || 0;
-    const progress = index === 0 ? 0 : (index + .12) / chapters.length;
-    window.scrollTo({
-      top: section.getBoundingClientRect().top + window.scrollY - top + (section.offsetHeight - canvas.clientHeight) * progress,
-      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
-    });
-  }
-
   return (
     <section ref={sectionRef} className="frame-hero about-film" id="about" aria-labelledby="about-heading">
       <h2 id="about-heading" className="visually-hidden">About Babylon</h2>
@@ -84,15 +45,14 @@ export default function Hero() {
           ref={canvasRef}
           className="frame-hero-canvas"
           role="img"
-          aria-label="A serum is formulated, whipped into a cream, filled into amber bottles and finished as a product line-up before a navy arch."
+          aria-label="Illustrative cosmetic sequence: a serum is formulated, whipped into a cream, filled into amber bottles and finished as a product line-up before a navy arch."
         />
 
         <div className="about-film-shade" aria-hidden="true" />
         <div className="about-film-edition" aria-hidden="true">BABYLON <span>EST. 2016</span></div>
         <div className="about-film-copy">
-          {chapters.map((chapter, index) => (
-            <article key={chapter.label} className={`about-chapter${index === stage ? ' is-active' : ''}`} aria-hidden={index !== stage}>
-              <div className="about-chapter-index"><span aria-hidden="true" />{String(index + 1).padStart(2, '0')} / 04 <span aria-hidden="true" /></div>
+          {chapters.map(chapter => (
+            <article key={chapter.label} className="about-chapter is-active">
               <p className="about-chapter-label">{chapter.label}</p>
               <h3>{chapter.title}<em>{chapter.emphasis}</em></h3>
               <p className="about-chapter-description">{chapter.description}</p>
@@ -102,10 +62,7 @@ export default function Hero() {
         </div>
 
         <div className="about-film-footer">
-          <div className="about-film-caption"><span />ABOUT BABYLON<span /></div>
-          <nav className="about-film-chapters" aria-label="About Babylon chapters">
-            {chapters.map((chapter, index) => <button key={chapter.label} type="button" aria-label={chapter.label} aria-current={index === stage ? 'step' : undefined} onClick={() => goToChapter(index)}><span className={index === stage ? 'is-active' : ''} /></button>)}
-          </nav>
+          <Link className="about-film-caption" to="/about">About us<span aria-hidden="true">→</span></Link>
         </div>
 
         <div className="frame-hero-track" aria-hidden="true">

@@ -6,11 +6,17 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 4187 --strictPort",
     "start": "npm run dev",
-    "build": "vite build",
-    "test": "node --test tests/inquiry.test.mjs tests/faq.test.mjs",
+    "build": "vite build && node scripts/prerender.mjs",
+    "test": "node --test tests/inquiry.test.mjs tests/faq.test.mjs tests/supabase-inquiry.test.mjs",
     "test:browser": "node tests/browser.mjs",
     "test:faq-browser": "node tests/faq-browser.mjs",
+    "test:contact-browser": "node tests/contact-browser.mjs",
+    "check:contact": "node scripts/check-contact.mjs",
+    "build:inquiry-function": "node scripts/build-inquiry-function.mjs && node scripts/check-inquiry-bundle.mjs",
+    "test:supabase": "node --test tests/supabase-inquiry.test.mjs",
     "test:publication": "node tests/publication.test.mjs",
+    "test:seo": "node tests/seo.test.mjs",
+    "test:sitewide-browser": "node tests/sitewide-browser.mjs",
     "preview": "vite preview --host 127.0.0.1 --port 4187 --strictPort"
   },
   "dependencies": {

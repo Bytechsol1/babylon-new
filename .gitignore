@@ -12,3 +12,6 @@ qa.mjs
 .env
 .env.*
 !.env.example
+supabase/.temp/
+supabase/.branches/
+supabase/functions/inquiry/_generated/

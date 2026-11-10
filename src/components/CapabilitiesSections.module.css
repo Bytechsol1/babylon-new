@@ -1,0 +1,76 @@
+/* The method library is scoped to this section; hero and closing stay unchanged. */
+.heading { display: grid; grid-template-columns: 1.4fr 1fr; align-items: end; gap: 48px; }
+.eyebrow { display: block; font-size: 12px; font-weight: 600; letter-spacing: 1.3px; line-height: 1.8; color: #896122; }
+.heading h2 { margin: 17px 0 0; font-size: clamp(40px, 4.5vw, 64px); font-weight: 600; line-height: 1.07; letter-spacing: -.06em; }
+.heading h2 em { font-weight: 400; }
+.introAside { display: flex; align-items: center; gap: 22px; padding-left: 28px; border-left: 1px solid var(--cap-rule); }
+.count { color: var(--cap-gold); font-size: clamp(58px, 6vw, 84px); font-weight: 400; line-height: 1; letter-spacing: -.075em; }
+.introAside p { max-width: 25ch; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.85; }
+.navigation { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0 24px; margin: 38px 0 42px; }
+.navigation a {
+  display: grid;
+  grid-template-columns: 25px minmax(0, 1fr);
+  align-content: start;
+  gap: 12px;
+  min-height: 80px;
+  padding: 17px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.6;
+  text-align: left;
+  transition: border-color .18s, color .18s;
+}
+.navNumber { color: #896122; font-size: 11px; font-variant-numeric: tabular-nums; }
+.navigation a:hover { color: #896122; border-color: var(--cap-gold); }
+.navigation a:focus-visible { outline: 2px solid #896122; outline-offset: 5px; }
+.sections { min-width: 0; }
+.method { display: grid; grid-template-columns: 64px minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(25px, 4vw, 56px); padding: 48px 0; scroll-margin-top: calc(var(--site-header-height, 84px) + 20px); }
+.method:first-child { padding-top: 0; }
+.method + .method { border-top: 1px solid var(--cap-rule); }
+.methodIndex { display: flex; flex-direction: column; align-self: stretch; gap: 22px; grid-column: 1; grid-row: 1; }
+.methodIndex > span { color: var(--cap-gold); font-size: 44px; font-weight: 400; line-height: 1; letter-spacing: -.075em; font-variant-numeric: tabular-nums; }
+.methodIndex i { width: 1px; flex: 1; min-height: 24px; margin-left: 16px; background: linear-gradient(var(--cap-rule), transparent); }
+.copy { grid-column: 2; grid-row: 1; min-width: 0; padding-block: 8px; }
+.copy h3 { margin: 17px 0 21px; font-size: clamp(30px, 3.2vw, 46px); font-weight: 500; line-height: 1.13; letter-spacing: -.055em; text-wrap: balance; }
+.copy .description { max-width: 45ch; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.85; }
+.focus { max-width: 43ch; margin-top: 25px; padding-left: 18px; border-left: 2px solid #b69a69; }
+.focus .eyebrow { font-size: 12px; letter-spacing: 1.2px; }
+.focus p { margin: 9px 0 0; font-size: 16px; line-height: 1.6; letter-spacing: -.025em; }
+.method .study { grid-column: 3; grid-row: 1; min-height: 0; height: clamp(280px, 29vw, 390px); border-radius: 4px 80px 4px 4px; }
+.method:nth-child(even) .copy { grid-column: 3; }
+.method:nth-child(even) .study { grid-column: 2; border-radius: 80px 4px 4px 4px; }
+.study :global(.cap-study-top) { padding: 22px 20px 0; font-size: 8px; letter-spacing: 1.1px; }
+.study figcaption { margin: 0 20px 21px; font-size: 8px; line-height: 1.7; letter-spacing: 1px; }
+@media (max-width: 1100px) {
+  .navigation { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .heading { gap: 30px; }
+  .introAside { gap: 18px; padding-left: 20px; }
+  .method { grid-template-columns: 44px minmax(0, 1fr) minmax(0, 1fr); gap: 25px; }
+  .methodIndex > span { font-size: 34px; }
+}
+@media (max-width: 700px) {
+  .heading { grid-template-columns: 1fr; gap: 25px; }
+  .heading h2 { font-size: clamp(39px, 10vw, 54px); margin-top: 13px; }
+  .introAside { gap: 22px; padding-left: 18px; }
+  .count { font-size: 54px; }
+  .introAside p { max-width: 30ch; font-size: 12px; }
+  .navigation { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 18px; margin: 27px 0 32px; }
+  .navigation a { grid-template-columns: 20px minmax(0, 1fr); gap: 9px; min-height: 76px; font-size: 11px; padding: 14px 0; }
+  .navNumber { font-size: 10px; }
+  .method { grid-template-columns: 32px minmax(0, 1fr); gap: 24px 16px; padding-block: 32px; }
+  .methodIndex { grid-column: 1; grid-row: 2; align-self: start; padding-top: 4px; }
+  .methodIndex > span { font-size: 29px; }
+  .methodIndex i { display: none; }
+  .copy, .method:nth-child(even) .copy { grid-column: 2; grid-row: 2; padding: 0; }
+  .copy h3 { margin-block: 13px 17px; font-size: 30px; }
+  .copy .description { font-size: 13px; }
+  .eyebrow { font-size: 12px; letter-spacing: 1px; }
+  .focus { margin-top: 22px; padding-left: 13px; }
+  .focus p { font-size: 15px; }
+  .method .study, .method:nth-child(even) .study { grid-column: 1 / -1; grid-row: 1; height: auto; aspect-ratio: 1.25; border-radius: 4px 65px 4px 4px; }
+  .method:nth-child(even) .study { border-radius: 65px 4px 4px 4px; }
+  .study :global(.cap-study-top) { padding: 19px 18px 0; font-size: 7px; }
+  .study figcaption { margin: 0 18px 18px; font-size: 7px; }
+}
+@media (prefers-reduced-motion: reduce) { .navigation a { transition: none; } }
