@@ -46,12 +46,16 @@ export function createSupabaseProxy({ env = process.env, fetcher = fetch, now = 
         if (!isIP(ip || '')) return reply(res, 503, { error: 'Secure submission is temporarily unavailable. Please try again.' });
         body = JSON.stringify(data);
       }
-      const remote = await callInquiryFunction({ env, method, body, ip, fetcher, now });
+      const remote = await callInquiryFunction({ env, method, body, ip, purpose: configuration ? 'audit' : 'status', fetcher, now });
       const result = await remote.json();
       if (configuration) {
         if ([401,403,404].includes(remote.status)) return reply(res,200,{mode:'preview',reason:'edge_unreachable'});
         if (!remote.ok) return reply(res, 503, { error: 'Secure inquiry storage is unavailable.' });
-        return reply(res, 200, result?.mode === 'live' ? { mode: 'live' } : { mode: 'preview', reason: 'edge_configuration' });
+        return reply(res, 200, result?.mode === 'live' ? { mode: 'live' } : {
+          mode: 'preview', reason: 'edge_configuration',
+          ...(result?.diagnostics?.database ? { database: result.diagnostics.database } : {}),
+          ...(Array.isArray(result?.diagnostics?.missing) ? { edgeMissing: result.diagnostics.missing } : {}),
+        });
       }
       if (remote.ok && result?.success === true) return reply(res, 200, { success: true });
       if (remote.status === 429) { res.setHeader('Retry-After', '900'); return reply(res, 429, { error: 'Too many attempts. Please try again in 15 minutes.' }); }
