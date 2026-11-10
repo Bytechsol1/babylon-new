@@ -26,7 +26,7 @@ function ScienceOverview() {
   return <div className="science-scroll" ref={sectionRef}>
     <section className="science-overview content-width"><SectionLabel number="02" aside="MES · INSPECTION · ROBOTICS">IN-HOUSE PRODUCTION TECHNOLOGY</SectionLabel>
       <div className="science-overview-grid">
-        <div><h2>How we run<br /><em>the factory</em></h2><p>We build our manufacturing execution system (MES) in house. It provides lot traceability across production.</p><ConceptImage name="home-technology" variant="wide" /><ArrowLink to="/about">About our production technology</ArrowLink></div>
+        <div><h2>How we run<br /><em>the factory</em></h2><p>We build our manufacturing execution system (MES) in house. It provides lot traceability across production.</p><ArrowLink to="/about">About our production technology</ArrowLink></div>
         <div className="science-visual"><ChemistryAnimation sectionRef={sectionRef} /></div>
         <ol className="capability-mini">{factoryTechnology.map((item, index) => <li key={item.short}><span>0{index + 1}</span>{item.text}</li>)}</ol>
       </div>
