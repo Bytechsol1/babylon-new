@@ -51,7 +51,7 @@ export function createSupabaseProxy({ env = process.env, fetcher = fetch, now = 
       if (configuration) {
         if ([401,403,404].includes(remote.status)) return reply(res,200,{mode:'preview',reason:'edge_unreachable'});
         if (!remote.ok) return reply(res, 503, { error: 'Secure inquiry storage is unavailable.' });
-        return reply(res, 200, result?.mode === 'live' ? { mode: 'live' } : {
+        return reply(res, 200, result?.mode === 'live' ? { mode: 'live', allowedOrigin: new URL(env.SITE_ORIGIN).origin } : {
           mode: 'preview', reason: 'edge_configuration',
           ...(result?.diagnostics?.database ? { database: result.diagnostics.database } : {}),
           ...(Array.isArray(result?.diagnostics?.missing) ? { edgeMissing: result.diagnostics.missing } : {}),
