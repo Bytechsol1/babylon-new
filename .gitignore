@@ -14,4 +14,4 @@ qa.mjs
 !.env.example
 supabase/.temp/
 supabase/.branches/
-supabase/functions/inquiry/_generated/
+supabase/functions/inquiry/_generated/dashboard.ts
