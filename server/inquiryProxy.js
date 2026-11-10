@@ -30,7 +30,9 @@ export function createSupabaseProxy({ env = process.env, fetcher = fetch, now = 
     const method = configuration ? 'GET' : 'POST';
     if (req.method !== method) { res.setHeader('Allow', method); return reply(res, 405, { error: 'Method not allowed.' }); }
     const issues = proxyConfigIssues(env);
-    if (issues.missing.length || issues.invalid.length) return reply(res, configuration ? 200 : 503, configuration ? { mode: 'preview' } : { code: 'INQUIRY_NOT_CONFIGURED', error: 'Secure inquiry storage is not configured yet. Please try again later.' });
+    if (issues.missing.length || issues.invalid.length) return reply(res, configuration ? 200 : 503, configuration
+      ? { mode: 'preview', reason: 'server_configuration', missing: issues.missing, invalid: issues.invalid }
+      : { code: 'INQUIRY_NOT_CONFIGURED', error: 'Secure inquiry storage is not configured yet. Please try again later.' });
     if (!configuration && !checkOrigin(req, env)) return reply(res, 403, { error: 'This request origin is not allowed.' });
     try {
       let body = '', ip = '';
@@ -47,9 +49,9 @@ export function createSupabaseProxy({ env = process.env, fetcher = fetch, now = 
       const remote = await callInquiryFunction({ env, method, body, ip, fetcher, now });
       const result = await remote.json();
       if (configuration) {
-        if ([401,403,404].includes(remote.status)) return reply(res,200,{mode:'preview'});
+        if ([401,403,404].includes(remote.status)) return reply(res,200,{mode:'preview',reason:'edge_unreachable'});
         if (!remote.ok) return reply(res, 503, { error: 'Secure inquiry storage is unavailable.' });
-        return reply(res, 200, result?.mode === 'live' ? { mode: 'live' } : { mode: 'preview' });
+        return reply(res, 200, result?.mode === 'live' ? { mode: 'live' } : { mode: 'preview', reason: 'edge_configuration' });
       }
       if (remote.ok && result?.success === true) return reply(res, 200, { success: true });
       if (remote.status === 429) { res.setHeader('Retry-After', '900'); return reply(res, 429, { error: 'Too many attempts. Please try again in 15 minutes.' }); }
