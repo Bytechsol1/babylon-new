@@ -68,7 +68,7 @@ export default function PartnershipModels({ syncHash = false, homepage = false }
   return <div className="partnership-models" data-model={service.id}>
     <figure className="partnership-image">
       <img src={overviewImage.src} srcSet={`${overviewImage.small} 600w, ${overviewImage.src} 1200w`} sizes="(max-width: 700px) 90vw, 40vw" alt={overviewImage.alt} width="1200" height="800" loading="lazy" decoding="async" />
-      <figcaption><span>{homepage ? 'COSMETIC DEVELOPMENT' : 'A PARTNERSHIP THAT FITS'}</span><span>AI-GENERATED CONCEPT</span></figcaption>
+      <figcaption><span>{homepage ? 'COSMETIC DEVELOPMENT' : 'A PARTNERSHIP THAT FITS'}</span></figcaption>
     </figure>
 
     <div className="partnership-selector">

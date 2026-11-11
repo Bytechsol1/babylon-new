@@ -27,7 +27,7 @@ function MethodStudy({ index }) {
   return <figure className={`cap-method-study cap-study-${index} ${styles.study}`}>
     <img className="cap-study-photo" src={image.src} srcSet={`${image.small} 600w, ${image.src} 900w`} sizes="(max-width: 900px) 90vw, 32vw" alt={image.alt} width="900" height="900" loading="lazy" decoding="async" />
     <div className="cap-study-top"><span>METHOD STUDY</span></div>
-    <figcaption><span>{methods[index].label}</span><span>AI-GENERATED CONCEPT</span></figcaption>
+    <figcaption><span>{methods[index].label}</span></figcaption>
   </figure>;
 }
 
@@ -50,7 +50,7 @@ export default function CapabilitiesPage() {
       <Label number="02">CAPABILITIES</Label>
       <div className="cap-hero-grid">
         <div className="cap-hero-copy"><span className="kicker">FORMULATION AND MANUFACTURING METHODS</span><h1 id="cap-page-title">What our<em>lab does</em></h1><p>Formulation, materials and manufacturing methods connect a product brief to a production specification.</p><p>Read how each method supports development, from the first sample to quality review.</p><a className="cap-text-link" href="#capability-methods">See the lab methods<span aria-hidden="true">→</span></a></div>
-        <figure className="cap-hero-image"><img src={heroImage.src} srcSet={`${heroImage.small} 600w, ${heroImage.src} 1200w`} sizes="(max-width: 800px) 90vw, 45vw" alt={heroImage.alt} width="1200" height="800" fetchPriority="high" decoding="async" /><figcaption><span>FORMULATION &amp; SAMPLE REVIEW</span><span>AI-GENERATED CONCEPT</span></figcaption></figure>
+        <figure className="cap-hero-image"><img src={heroImage.src} srcSet={`${heroImage.small} 600w, ${heroImage.src} 1200w`} sizes="(max-width: 800px) 90vw, 45vw" alt={heroImage.alt} width="1200" height="800" fetchPriority="high" decoding="async" /><figcaption><span>FORMULATION &amp; SAMPLE REVIEW</span></figcaption></figure>
       </div>
     </section>
 

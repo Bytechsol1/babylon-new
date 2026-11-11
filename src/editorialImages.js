@@ -7,7 +7,7 @@ const concept = (id, label, description, width = 1200, height = 800) => {
   if (!src || !small) throw new Error(`Missing editorial image variant: ${id}`);
   return Object.freeze({
     src, small, width, height, label,
-    alt: `AI-generated illustrative concept: ${description}. Not a photograph of Babylon products, staff, facilities, equipment or actual tests.`,
+    alt: `Illustrative concept: ${description}. Not a photograph of Babylon products, staff, facilities, equipment or actual tests.`,
   });
 };
 
